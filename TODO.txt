@@ -1,0 +1,4 @@
+  - consistent naming scheme
+  - notifications?
+  - what to put in configuration?
+  - add some error handling!

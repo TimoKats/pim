@@ -1,0 +1,18 @@
+process:
+  - run:
+    name: Testing
+    schedule: '@daily'
+    directory: /home/timokats/Code/Go/pim/tests/
+    command: ls -l
+
+  - run:
+    name: Testing
+    schedule: '@daily'
+    directory: /home/timokats/Code/C/
+    command: python3 testing.py
+
+  - run:
+    name: Testing
+    schedule: '@daily'
+    directory: /home/timokats/Code/C/cdfb/
+    command: python3 main.py
