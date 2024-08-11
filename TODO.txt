@@ -2,3 +2,6 @@
   - notifications?
   - what to put in configuration?
   - add some error handling!
+  - cron scheduling
+  - on run commands
+  - iterative storing of logs

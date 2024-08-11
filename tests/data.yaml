@@ -6,11 +6,11 @@ logs:
     command: ls -l
   output: |
     total 12
-    -rw-r--r-- 1 timokats timokats 843 Aug 10 22:42 data.yaml
+    -rw-r--r-- 1 timokats timokats 905 Aug 11 16:29 data.yaml
     -rw-r--r-- 1 timokats timokats   9 Aug 10 18:24 test.py
     -rw-r--r-- 1 timokats timokats 371 Aug 10 21:45 test.yaml
   exitcode: 0
-  timestamp: 2024-08-10T22:42:46.172555025+02:00
+  timestamp: 2024-08-11T16:40:56.877029979+02:00
 - runcommand:
     name: Testing
     directory: /home/timokats/Code/C/
@@ -19,7 +19,7 @@ logs:
   output: |
     python3: can't open file '/home/timokats/Code/C/testing.py': [Errno 2] No such file or directory
   exitcode: 2
-  timestamp: 2024-08-10T22:42:46.182898747+02:00
+  timestamp: 2024-08-11T16:40:56.887241737+02:00
 - runcommand:
     name: Testing
     directory: /home/timokats/Code/C/cdfb/
@@ -27,4 +27,4 @@ logs:
     command: python3 main.py
   output: ""
   exitcode: -1
-  timestamp: 2024-08-10T22:42:46.182979882+02:00
+  timestamp: 2024-08-11T16:40:56.887313619+02:00

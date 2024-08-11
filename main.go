@@ -13,6 +13,9 @@ func main() {
       storedLog := pim.StoreRun(run, output, status)
       database.Logs = append(database.Logs, storedLog)
     }
-    pim.WriteDataYaml("tests/data.yaml", database)
+    writeYamlErr := pim.WriteDataYaml("tests/data.yaml", database)
+    if writeYamlErr != nil {
+      pim.Error.Println(writeYamlErr)
+    }
   }
 }
