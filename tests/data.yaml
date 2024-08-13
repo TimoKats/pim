@@ -1,30 +1,771 @@
 logs:
 - runcommand:
-    name: Testing
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:49:00.004632275+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:49:10.003404425+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:49:20.003531352+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:49:30.003490323+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:49:40.004709539+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:49:50.003927556+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: '* */5 * * *'
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:50:14.003687105+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: '* */5 * * *'
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:50:15.004114122+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: '* */5 * * *'
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:50:16.004034042+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: '* */5 * * *'
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:50:17.004835035+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: '* */5 * * *'
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:50:18.0033603+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: '* */5 * * *'
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:50:19.004639644+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: '* */5 * * *'
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:50:20.004878654+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: '* */5 * * *'
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:50:20.004902496+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:51:10.003160432+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:51:20.0033615+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:51:30.003916024+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:51:40.003836164+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:51:50.004417552+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:52:00.002204352+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T15:54:15.003759835+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T16:03:15.004531732+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T16:04:15.003542704+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T16:04:30.004867058+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T16:04:45.003830237+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T16:05:00.003739831+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T16:05:00.003756653+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T16:09:15.004061927+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T16:09:30.003946528+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T16:09:45.00353206+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T16:10:00.00377896+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T21:34:15.011063909+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T21:34:30.004737938+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T21:34:45.004727861+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T21:35:00.003811104+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */5 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T21:35:00.003848349+02:00
+- runcommand:
+    name: Listing files
     directory: /home/timokats/Code/Go/pim/tests/
-    schedule: '@daily'
+    schedule: '*/15 * * * *'
     command: ls -l
   output: |
-    total 12
-    -rw-r--r-- 1 timokats timokats 905 Aug 11 16:29 data.yaml
-    -rw-r--r-- 1 timokats timokats   9 Aug 10 18:24 test.py
-    -rw-r--r-- 1 timokats timokats 371 Aug 10 21:45 test.yaml
+    total 20
+    -rw-r--r-- 1 timokats timokats 8592 Aug 12 21:35 data.yaml
+    -rw-r--r-- 1 timokats timokats    9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats  421 Aug 12 15:53 test.yaml
   exitcode: 0
-  timestamp: 2024-08-11T16:40:56.877029979+02:00
+  timestamp: 2024-08-12T21:40:45.00540051+02:00
 - runcommand:
-    name: Testing
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 20
+    -rw-r--r-- 1 timokats timokats 9001 Aug 12 21:40 data.yaml
+    -rw-r--r-- 1 timokats timokats    9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats  421 Aug 12 15:53 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:41:00.004675972+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 20
+    -rw-r--r-- 1 timokats timokats 9411 Aug 12 21:41 data.yaml
+    -rw-r--r-- 1 timokats timokats    9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats  421 Aug 12 15:53 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:41:15.004228134+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 20
+    -rw-r--r-- 1 timokats timokats 9821 Aug 12 21:41 data.yaml
+    -rw-r--r-- 1 timokats timokats    9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats  421 Aug 12 15:53 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:41:30.004576136+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 20
+    -rw-r--r-- 1 timokats timokats 10231 Aug 12 21:41 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 15:53 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:41:45.004230967+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 20
+    -rw-r--r-- 1 timokats timokats 10644 Aug 12 21:41 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 15:53 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:42:00.004328079+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 20
+    -rw-r--r-- 1 timokats timokats 11057 Aug 12 21:42 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 15:53 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:42:15.004372688+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 20
+    -rw-r--r-- 1 timokats timokats 11470 Aug 12 21:42 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 15:53 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:42:30.003790751+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 20
+    -rw-r--r-- 1 timokats timokats 11883 Aug 12 21:42 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 21:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:43:15.004174664+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 24
+    -rw-r--r-- 1 timokats timokats 12296 Aug 12 21:43 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 21:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:43:30.005359269+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 24
+    -rw-r--r-- 1 timokats timokats 12709 Aug 12 21:43 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 21:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:43:45.005217001+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 24
+    -rw-r--r-- 1 timokats timokats 13122 Aug 12 21:43 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 21:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:44:00.004504587+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 24
+    -rw-r--r-- 1 timokats timokats 13535 Aug 12 21:44 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 21:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:44:15.004428556+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 24
+    -rw-r--r-- 1 timokats timokats 13948 Aug 12 21:44 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 21:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:44:30.005151916+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 24
+    -rw-r--r-- 1 timokats timokats 14361 Aug 12 21:44 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 21:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:44:45.004604373+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */3 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T21:45:00.004016027+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 24
+    -rw-r--r-- 1 timokats timokats 14774 Aug 12 21:44 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 21:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:45:00.005118738+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */3 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T21:50:30.002000007+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 24
+    -rw-r--r-- 1 timokats timokats 15665 Aug 12 21:50 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 21:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:58:30.006435672+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 24
+    -rw-r--r-- 1 timokats timokats 16078 Aug 12 21:58 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 21:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:58:45.005374619+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 28
+    -rw-r--r-- 1 timokats timokats 16491 Aug 12 21:58 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 21:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:59:00.004263143+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 28
+    -rw-r--r-- 1 timokats timokats 16904 Aug 12 21:59 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 21:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:59:15.00615757+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 28
+    -rw-r--r-- 1 timokats timokats 17316 Aug 12 21:59 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 21:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:59:30.005378935+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 28
+    -rw-r--r-- 1 timokats timokats 17729 Aug 12 21:59 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 21:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T21:59:45.005171512+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 */3 * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T22:00:00.005506193+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 28
+    -rw-r--r-- 1 timokats timokats 18142 Aug 12 21:59 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   421 Aug 12 21:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T22:00:00.005731389+02:00
+- runcommand:
+    name: Run non existing python
     directory: /home/timokats/Code/C/
-    schedule: '@daily'
+    schedule: '@hourly'
     command: python3 testing.py
   output: |
     python3: can't open file '/home/timokats/Code/C/testing.py': [Errno 2] No such file or directory
   exitcode: 2
-  timestamp: 2024-08-11T16:40:56.887241737+02:00
+  timestamp: 2024-08-12T22:00:00.020740504+02:00
 - runcommand:
-    name: Testing
-    directory: /home/timokats/Code/C/cdfb/
-    schedule: '@daily'
-    command: python3 main.py
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 28
+    -rw-r--r-- 1 timokats timokats 19112 Aug 12 22:00 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   419 Aug 12 22:02 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T22:02:45.006700411+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 * * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T22:03:00.005796913+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 28
+    -rw-r--r-- 1 timokats timokats 19525 Aug 12 22:02 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   419 Aug 12 22:02 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T22:03:00.006037161+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 28
+    -rw-r--r-- 1 timokats timokats 20175 Aug 12 22:03 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   419 Aug 12 22:02 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T22:03:15.005286137+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 32
+    -rw-r--r-- 1 timokats timokats 20588 Aug 12 22:03 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   419 Aug 12 22:02 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T22:03:30.005740276+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 32
+    -rw-r--r-- 1 timokats timokats 21001 Aug 12 22:03 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   419 Aug 12 22:02 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T22:03:45.004971347+02:00
+- runcommand:
+    name: Check Python version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 * * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-12T22:04:00.005086101+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 32
+    -rw-r--r-- 1 timokats timokats 21414 Aug 12 22:03 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   419 Aug 12 22:02 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-12T22:04:00.005797444+02:00
+- runcommand:
+    name: Listing files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 32
+    -rw-r--r-- 1 timokats timokats 22064 Aug 12 22:04 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   419 Aug 12 22:04 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-13T10:52:30.005152248+02:00
+- runcommand:
+    name: Listing-files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 32
+    -rw-r--r-- 1 timokats timokats 22477 Aug 13 10:52 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   419 Aug 13 12:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-13T12:42:22.371378665+02:00
+- runcommand:
+    name: listing-files
+    directory: /home/timokats/Code/Go/pim/tests/
+    schedule: '*/15 * * * *'
+    command: ls -l
+  output: |
+    total 32
+    -rw-r--r-- 1 timokats timokats 22890 Aug 13 12:42 data.yaml
+    -rw-r--r-- 1 timokats timokats     9 Aug 10 18:24 test.py
+    -rw-r--r-- 1 timokats timokats   419 Aug 13 12:42 test.yaml
+  exitcode: 0
+  timestamp: 2024-08-13T12:42:41.577269576+02:00
+- runcommand:
+    name: listing-files
+    directory: /home/timokats/Code/Python/FinanceMonitor/
+    schedule: '*/15 * * * *'
+    command: Python3 main.py
   output: ""
   exitcode: -1
-  timestamp: 2024-08-11T16:40:56.887313619+02:00
+  timestamp: 2024-08-13T12:43:52.747303819+02:00

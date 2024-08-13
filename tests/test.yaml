@@ -1,18 +1,18 @@
 process:
   - run:
-    name: Testing
-    schedule: '@daily'
-    directory: /home/timokats/Code/Go/pim/tests/
-    command: ls -l
+    name: listing-files
+    schedule: '*/15 * * * *'
+    directory: /home/timokats/Code/Python/FinanceMonitor/
+    command: python3 main.py
 
   - run:
-    name: Testing
-    schedule: '@daily'
+    name: Run non existing python
+    schedule: '@hourly'
     directory: /home/timokats/Code/C/
     command: python3 testing.py
 
   - run:
-    name: Testing
-    schedule: '@daily'
-    directory: /home/timokats/Code/C/cdfb/
-    command: python3 main.py
+    name: Check Python version
+    schedule: '0 * * * * *'
+    directory: /home/timokats/Code/C/cdb/
+    command: python3 --version

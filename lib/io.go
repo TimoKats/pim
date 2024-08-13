@@ -6,6 +6,19 @@ import (
   "os"
 )
 
+func ReadDataYaml(filename string) (Database, error) {
+  var database Database
+  yamlFile, fileErr := os.ReadFile(filename)
+  if fileErr == nil {
+    yamlErr := yaml.Unmarshal(yamlFile, &database)
+    if yamlErr == nil {
+      return database, nil
+    }
+    return database, yamlErr
+  }
+  return database, fileErr
+}
+
 func ReadProcessYaml(filename string) (Process, error) {
   var process Process
   yamlFile, fileErr := os.ReadFile(filename)
@@ -16,7 +29,8 @@ func ReadProcessYaml(filename string) (Process, error) {
     }
     return process, yamlErr
   }
-  return process, fileErr
+  Warn.Printf("No database of runs found. Will add new file at: %s", filename)
+  return process, nil
 }
 
 func WriteDataYaml(filename string, database Database) error {
