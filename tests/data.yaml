@@ -769,3 +769,117 @@ logs:
   output: ""
   exitcode: -1
   timestamp: 2024-08-13T12:43:52.747303819+02:00
+- runcommand:
+    name: python-version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 * * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-13T15:45:29.859446223+02:00
+- runcommand:
+    name: python-version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 * * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-13T15:46:06.283185993+02:00
+- runcommand:
+    name: python-version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 * * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-13T15:46:23.699552097+02:00
+- runcommand:
+    name: python-version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 * * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-13T15:49:01.89435978+02:00
+- runcommand:
+    name: python-version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 * * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-13T17:42:27.949084495+02:00
+- runcommand:
+    name: listing-files
+    directory: /home/timokats/Code/Python/FinanceMonitor/
+    schedule: '*/15 * * * *'
+    command: python3 main.py
+  output: |2
+     * Serving Flask app 'main'
+     * Debug mode: on
+    Address already in use
+    Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port.
+  exitcode: 1
+  timestamp: 2024-08-13T18:01:45.918925276+02:00
+- runcommand:
+    name: python-version
+    directory: /home/timokats/Code/C/cdb/
+    schedule: 0 * * * * *
+    command: python3 --version
+  output: |
+    Python 3.11.2
+  exitcode: 0
+  timestamp: 2024-08-13T18:02:00.004527504+02:00
+- runcommand:
+    name: listing-files
+    directory: /home/timokats/Code/Python/FinanceMonitor/
+    schedule: '*/15 * * * *'
+    command: python3 main.py
+  output: |2
+     * Serving Flask app 'main'
+     * Debug mode: on
+    Address already in use
+    Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port.
+  exitcode: 1
+  timestamp: 2024-08-13T18:02:00.893854461+02:00
+- runcommand:
+    name: listing-files
+    directory: /home/timokats/Code/Python/FinanceMonitor/
+    schedule: '*/15 * * * *'
+    command: python3 main.py
+  output: |2
+     * Serving Flask app 'main'
+     * Debug mode: on
+    Address already in use
+    Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port.
+  exitcode: 1
+  timestamp: 2024-08-13T18:02:15.958139304+02:00
+- runcommand:
+    name: listing-files
+    directory: /home/timokats/Code/Python/FinanceMonitor/
+    schedule: '*/15 * * * *'
+    command: python3 main.py
+  output: |2
+     * Serving Flask app 'main'
+     * Debug mode: on
+    Address already in use
+    Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port.
+  exitcode: 1
+  timestamp: 2024-08-13T18:02:31.041801332+02:00
+- runcommand:
+    name: listing-files
+    directory: /home/timokats/Code/Python/FinanceMonitor/
+    schedule: '*/15 * * * *'
+    command: python3 main.py
+  output: |2
+     * Serving Flask app 'main'
+     * Debug mode: on
+    Address already in use
+    Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port.
+  exitcode: 1
+  timestamp: 2024-08-13T18:02:46.061123142+02:00

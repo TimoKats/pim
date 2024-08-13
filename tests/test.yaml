@@ -12,7 +12,7 @@ process:
     command: python3 testing.py
 
   - run:
-    name: Check Python version
+    name: python-version
     schedule: '0 * * * * *'
     directory: /home/timokats/Code/C/cdb/
     command: python3 --version
