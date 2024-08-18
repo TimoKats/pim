@@ -1,7 +1,7 @@
 package commands
 
 import (
-  lib "pim/commands/lib"
+  lib "github.com/TimoKats/pim/commands/lib"
 
   "errors"
 

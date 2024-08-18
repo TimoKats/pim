@@ -1,8 +1,8 @@
 package main
 
 import (
-  lib "pim/commands/lib"
-  pim "pim/commands"
+  lib "github.com/TimoKats/pim/commands/lib"
+  pim "github.com/TimoKats/pim/commands"
 
   "errors"
   "time"
