@@ -26,6 +26,9 @@ func parseCommand(command []string, process lib.Process, database *lib.Database)
     case "start":
       pim.RunSchedule(process, database)
       heartbeat()
+    case "log":
+      lib.Info.Println("oh you want the logs I see!")
+      pim.ViewLogs(database)
     }
   return nil
 }

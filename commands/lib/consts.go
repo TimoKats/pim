@@ -11,4 +11,5 @@ func defaultConfigDir() string {
 
 var PROCESSPATH string = defaultConfigDir() + "process.yaml"
 var DATAPATH string = defaultConfigDir() + "data.yaml"
+var COLUMNWIDTH int = 20
 

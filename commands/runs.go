@@ -8,7 +8,7 @@ import (
   "github.com/robfig/cron"
 )
 
-func RunSelected (selectedRun string, process lib.Process, database *lib.Database) error {
+func RunSelected(selectedRun string, process lib.Process, database *lib.Database) error {
   for _, run := range process.Runs {
     if run.Name == selectedRun {
       output, status := lib.ExecuteRun(run, true)

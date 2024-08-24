@@ -20,9 +20,9 @@ var Blue = "\033[34m"
 var Magenta = "\033[35m"
 
 func init() {
-  Info = log.New(os.Stdout, Blue + "info:    " + Reset, log.Ltime|log.Lshortfile)
-  Warn = log.New(os.Stdout, Yellow + "warning: " + Reset, log.Ltime|log.Lshortfile)
-  Error = log.New(os.Stdout, Red + "error:   " + Reset, log.Ltime|log.Lshortfile)
-  Fatal = log.New(os.Stdout, Magenta + "fatal:   " + Reset, log.Ltime|log.Lshortfile)
+  Info = log.New(os.Stdout, Blue + "info:    " + Reset, log.Ltime)
+  Warn = log.New(os.Stdout, Yellow + "warning: " + Reset, log.Ltime)
+  Error = log.New(os.Stdout, Red + "error:   " + Reset, log.Ltime)
+  Fatal = log.New(os.Stdout, Magenta + "fatal:   " + Reset, log.Ltime)
 }
 
