@@ -38,9 +38,10 @@ func main() {
   process, database, setupErr := pim.SetupYamlFiles()
   if setupErr != nil {
     lib.Error.Println(setupErr)
+    return
   }
   parseErr := parseCommand(os.Args, process, &database)
   if parseErr != nil {
-    lib.Info.Println(parseErr)
+    lib.Error.Println(parseErr)
   }
 }

@@ -7,7 +7,7 @@ import (
 )
 
 func SetupYamlFiles() (lib.Process, lib.Database, error) {
-  database, readDataErr := lib.ReadDataYaml("/home/timokats/.pim/data.yaml")
-  process, readProcessErr := lib.ReadProcessYaml("/home/timokats/.pim/process.yaml")
+  database, readDataErr := lib.ReadDataYaml(lib.DATAPATH) // NOTE: Pass them as variable?
+  process, readProcessErr := lib.ReadProcessYaml(lib.PROCESSPATH)
   return process, database, errors.Join(readDataErr, readProcessErr)
 }

@@ -15,6 +15,10 @@ func ReadDataYaml(filename string) (Database, error) {
       return database, nil
     }
     return database, yamlErr
+  } else if errors.Is(fileErr, os.ErrNotExist) {
+    Warn.Printf("Creating new data file at %s", filename)
+    os.Create(filename)
+    return database, nil
   }
   return database, fileErr
 }
