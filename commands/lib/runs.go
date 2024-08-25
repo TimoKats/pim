@@ -24,19 +24,23 @@ func formatCommand(command string) (string, []string)  {
 }
 
 
-func ExecuteRun(run Run, showOutput bool) (string, int) {
+func ExecuteRun(run Run, showOutput bool) (string, int) { // NOTE: Only timed runs, too inefficient
   // var exitErr *exec.ExitError
+  log, _ := os.Create("output.log")
+	defer log.Close()
+
   app, args := formatCommand(run.Command)
-  ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+  ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
   cmd := exec.CommandContext(ctx, app, args...)
   cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
   cmd.Dir = run.Directory
   cmd.Env = os.Environ()
-  defer cancel()
+	cmd.Stdout = log
   if runErr := cmd.Run(); runErr != nil {
     syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL)
-    return "terminator!", 0
+    return "", 0
   }
+
   return "not terminated", 1
 
   // if showOutput {
