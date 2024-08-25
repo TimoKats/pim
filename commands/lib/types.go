@@ -13,6 +13,7 @@ type Database struct {
 }
 
 type Log struct {
+  Id string
   RunCommand Run
   Output string
   ExitCode int

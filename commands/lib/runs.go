@@ -1,9 +1,13 @@
 package lib
 
 import (
+  "context"
   "os/exec"
   "strings"
-  "errors"
+  "syscall"
+  "os"
+  // "errors"
+  "time"
 )
 
 func formatCommand(command string) (string, []string)  {
@@ -19,20 +23,30 @@ func formatCommand(command string) (string, []string)  {
   return app, args
 }
 
+
 func ExecuteRun(run Run, showOutput bool) (string, int) {
-  var exitErr *exec.ExitError
+  // var exitErr *exec.ExitError
   app, args := formatCommand(run.Command)
-  cmd := exec.Command(app, args...)
+  ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+  cmd := exec.CommandContext(ctx, app, args...)
+  cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
   cmd.Dir = run.Directory
-  runOutput, runErr := cmd.CombinedOutput()
-  if showOutput {
-    Info.Printf("%s", string(runOutput))
+  cmd.Env = os.Environ()
+  defer cancel()
+  if runErr := cmd.Run(); runErr != nil {
+    syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL)
+    return "terminator!", 0
   }
-  if errors.As(runErr, &exitErr) {
-    return string(runOutput), exitErr.ExitCode()
-  } else if runErr != nil {
-    return string(runOutput), -1
-  }
-  return string(runOutput), 0
+  return "not terminated", 1
+
+  // if showOutput {
+  //   Info.Printf("%s", string(runOutput))
+  // }
+  // if errors.As(runErr, &exitErr) {
+  //   return string(runOutput), exitErr.ExitCode()
+  // } else if runErr != nil {
+  //   return string(runOutput), -1
+  // }
+  // return string(runOutput), 0
 }
 

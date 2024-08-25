@@ -9,6 +9,7 @@ func defaultConfigDir() string {
   return dirname + "/.pim/"
 }
 
+var IDCHARSET string = "abcdefghijklmnopqrstuvwxyz"
 var PROCESSPATH string = defaultConfigDir() + "process.yaml"
 var DATAPATH string = defaultConfigDir() + "data.yaml"
 var COLUMNWIDTH int = 20

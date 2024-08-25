@@ -27,8 +27,12 @@ func parseCommand(command []string, process lib.Process, database *lib.Database)
       pim.RunSchedule(process, database)
       heartbeat()
     case "log":
-      lib.Info.Println("oh you want the logs I see!")
-      pim.ViewLogs(database)
+      if len(command) < 3 {
+        return pim.ViewLogs(database)
+      }
+      return pim.ViewLog(database, command[2])
+    default:
+      return errors.New("Command not found.")
     }
   return nil
 }
