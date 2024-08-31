@@ -5,10 +5,29 @@ import (
   "os/exec"
   "strings"
   "syscall"
-  "os"
-  // "errors"
+  "errors"
   "time"
+  "os"
 )
+
+func generateLogName(length int) string {
+  id := make([]byte, length)
+  for i := range id {
+    id[i] = IDCHARSET[SeededRand.Intn(len(IDCHARSET))]
+  }
+  return string(id) + ".log"
+}
+
+func getCommandLogs(filename string) string {
+  content, fileErr := os.ReadFile(filename)
+  cmd := exec.Command("rm", filename)
+  defer cmd.Run()
+  if fileErr != nil {
+    Error.Printf("Can't read from temp log file %s", filename)
+    return ""
+  }
+  return string(content)
+}
 
 func formatCommand(command string) (string, []string)  {
   var app string
@@ -23,12 +42,10 @@ func formatCommand(command string) (string, []string)  {
   return app, args
 }
 
-
-func ExecuteRun(run Run, showOutput bool) (string, int) { // NOTE: Only timed runs, too inefficient
-  // var exitErr *exec.ExitError
-  log, _ := os.Create("output.log")
+func ExecuteTimedRun(run Run, showOutput bool) (string, int) {
+  logName := generateLogName(5)
+  log, _ := os.Create(logName)
 	defer log.Close()
-
   app, args := formatCommand(run.Command)
   ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
   cmd := exec.CommandContext(ctx, app, args...)
@@ -38,19 +55,25 @@ func ExecuteRun(run Run, showOutput bool) (string, int) { // NOTE: Only timed ru
 	cmd.Stdout = log
   if runErr := cmd.Run(); runErr != nil {
     syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL)
-    return "", 0
+    return getCommandLogs(logName), 0
   }
-
   return "not terminated", 1
+}
 
-  // if showOutput {
-  //   Info.Printf("%s", string(runOutput))
-  // }
-  // if errors.As(runErr, &exitErr) {
-  //   return string(runOutput), exitErr.ExitCode()
-  // } else if runErr != nil {
-  //   return string(runOutput), -1
-  // }
-  // return string(runOutput), 0
+func ExecuteRun(run Run, showOutput bool) (string, int) {
+  var exitErr *exec.ExitError
+  app, args := formatCommand(run.Command)
+  cmd := exec.Command(app, args...)
+  cmd.Dir = run.Directory
+  runOutput, runErr := cmd.CombinedOutput()
+  if showOutput {
+    Info.Printf("%s", string(runOutput))
+  }
+  if errors.As(runErr, &exitErr) {
+    return string(runOutput), exitErr.ExitCode()
+  } else if runErr != nil {
+    return string(runOutput), -1
+  }
+  return string(runOutput), 0
 }
 
