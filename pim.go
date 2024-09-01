@@ -31,6 +31,8 @@ func parseCommand(command []string, process lib.Process, database *lib.Database)
         return pim.ViewLogs(database)
       }
       return pim.ViewLog(database, command[2])
+    case "ls":
+      return pim.ListProcesses(process)
     default:
       return errors.New("Command not found.")
     }

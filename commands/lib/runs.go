@@ -15,7 +15,7 @@ func generateLogName(length int) string {
   for i := range id {
     id[i] = IDCHARSET[SeededRand.Intn(len(IDCHARSET))]
   }
-  return string(id) + ".log"
+  return DefaultConfigDir() + "/" + string(id) + ".log"
 }
 
 func getCommandLogs(filename string) string {
