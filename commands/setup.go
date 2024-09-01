@@ -11,3 +11,4 @@ func SetupYamlFiles() (lib.Process, lib.Database, error) {
   process, readProcessErr := lib.ReadProcessYaml(lib.PROCESSPATH)
   return process, database, errors.Join(readDataErr, readProcessErr)
 }
+

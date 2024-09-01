@@ -42,12 +42,12 @@ func formatCommand(command string) (string, []string)  {
   return app, args
 }
 
-func ExecuteTimedRun(run Run, showOutput bool) (string, int) {
+func ExecuteTimedRun(run Run, showOutput bool, duration int) (string, int) {
   logName := generateLogName(5)
   log, _ := os.Create(logName)
 	defer log.Close()
   app, args := formatCommand(run.Command)
-  ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+  ctx, _ := context.WithTimeout(context.Background(), time.Duration(duration) * time.Second)
   cmd := exec.CommandContext(ctx, app, args...)
   cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
   cmd.Dir = run.Directory

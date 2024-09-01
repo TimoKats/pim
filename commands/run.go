@@ -8,13 +8,23 @@ import (
   "github.com/robfig/cron"
 )
 
+func runAndStore(run lib.Run, database *lib.Database, showOutput bool) {
+  var output string
+  var status int
+  if run.Duration != 0 {
+    output, status = lib.ExecuteTimedRun(run, showOutput, run.Duration)
+  } else {
+    output, status = lib.ExecuteRun(run, showOutput)
+  }
+  storedLog := lib.StoreRun(run, output, status)
+  database.Logs = append(database.Logs, storedLog)
+  lib.WriteDataYaml(lib.DATAPATH, *database)
+}
+
 func RunSelected(selectedRun string, process lib.Process, database *lib.Database) error {
   for _, run := range process.Runs {
     if run.Name == selectedRun {
-      output, status := lib.ExecuteRun(run, true)
-      storedLog := lib.StoreRun(run, output, status)
-      database.Logs = append(database.Logs, storedLog)
-      lib.WriteDataYaml(lib.DATAPATH, *database)
+      runAndStore(run, database, true)
       return nil
     }
   }
@@ -27,10 +37,7 @@ func RunSchedule(process lib.Process, database *lib.Database) {
     run := run
     cronErr := cronSchedule.AddFunc(run.Schedule, func() {
       lib.Info.Printf("Now running '%s'", run.Name)
-      output, status := lib.ExecuteRun(run, false)
-      storedLog := lib.StoreRun(run, output, status)
-      database.Logs = append(database.Logs, storedLog)
-      lib.WriteDataYaml(lib.DATAPATH, *database)
+      runAndStore(run, database, false)
     })
     if cronErr != nil {
       lib.Error.Printf("Error in '%s'. Check Yaml.", run.Name)

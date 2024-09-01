@@ -7,7 +7,6 @@ import (
   "time"
 )
 
-
 func ViewLog (database *lib.Database, logId string) error {
   for _, log := range database.Logs {
     if log.Id == logId {
@@ -32,3 +31,4 @@ func ViewLogs (database *lib.Database) error {
   }
   return nil
 }
+

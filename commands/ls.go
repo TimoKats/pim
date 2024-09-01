@@ -9,7 +9,7 @@ func ListProcesses(process lib.Process) error {
     name := lib.ResponsiveWhitespace(run.Name)
     cmd := lib.ResponsiveWhitespace(run.Command)
     schedule := lib.ResponsiveWhitespace(run.Schedule)
-    lib.Info.Printf("%s | %s | %s", name, schedule, cmd)
+    lib.Info.Printf("%s | %s | %s | %d ", name, schedule, cmd, run.Duration)
   }
   return nil
 }
