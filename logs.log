@@ -1,0 +1,4 @@
+info:    14:37:13 finance-dashboard    | */15 * * * *         | python3 main.py      | 10 
+info:    14:37:13 apt-update           | @hourly              | sudo apt update -y   | 0 
+info:    14:37:13 sleep                | 0 * * * * *          | sleep 3600           | 0 
+info:    14:37:13 python-version       | 0 * * * * *          | python3 --version    | 0 
