@@ -30,14 +30,19 @@ func ResponsiveWhitespace(text string) string {
   return text
 }
 
-func init() { // NOTE: I am here! Trying to use std out and log files based on the command!
-
-  logFile, err := os.OpenFile("logs.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+func InitFileLogging() {
+  logFile, err := os.OpenFile(LOGPATH, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
   if err != nil {
     log.Fatal(err)
   }
+  Info = log.New(logFile, "info:  ", log.Ltime)
+  Warn = log.New(logFile, "warn:  ", log.Ltime)
+  Error = log.New(logFile, "error: ", log.Ltime)
+  Fatal = log.New(logFile, "fatal: ", log.Ltime)
+}
 
-  Info = log.New(logFile, "info:    ", log.Ltime)
+func init() {
+  Info = log.New(os.Stdout, Blue + "info:    " + Reset, log.Ltime)
   Warn = log.New(os.Stdout, Yellow + "warning: " + Reset, log.Ltime)
   Error = log.New(os.Stdout, Red + "error:   " + Reset, log.Ltime)
   Fatal = log.New(os.Stdout, Magenta + "fatal:   " + Reset, log.Ltime)

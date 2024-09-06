@@ -32,6 +32,7 @@ func RunSelected(selectedRun string, process lib.Process, database *lib.Database
 }
  
 func RunSchedule(process lib.Process, database *lib.Database) {
+  lib.InitFileLogging()
   cronSchedule := cron.New()
   for _, run := range process.Runs {
     run := run
