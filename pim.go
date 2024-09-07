@@ -44,6 +44,10 @@ func main() {
     lib.Error.Println("Not enough arguments. pim <<run, start, ls>>.")
     return
   }
+  if startupErr := pim.CheckStartupErrors(); startupErr != nil {
+    lib.Error.Println(startupErr)
+    return
+  }
   process, database, setupErr := pim.SetupYamlFiles()
   if setupErr != nil {
     lib.Error.Println(setupErr)

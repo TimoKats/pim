@@ -29,3 +29,10 @@ func SetupYamlFiles() (lib.Process, lib.Database, error) {
   return process, database, errors.Join(readDataErr, readProcessErr)
 }
 
+func CheckStartupErrors() error {
+  if err := errors.Join(lib.CONFIGERR, lib.LOGERR); err != nil {
+    return err
+  }
+  return nil
+}
+
