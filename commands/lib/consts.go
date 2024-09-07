@@ -18,11 +18,12 @@ func DefaultConfigDir() (string, error) {
 }
 
 func DefaultLogDir(configDir string) (string, error) {
+  logDir := configDir + "/logs/"
   if len(configDir) == 0 { // then the config dir doesn't exist...
     return "", nil
   }
   if _, err := os.Stat(logDir); os.IsNotExist(err) {
-    dirErr := os.Mkdir(logDir + "logs/", 0755)
+    dirErr := os.Mkdir(logDir, 0755)
     if dirErr != nil {
       return "", dirErr
     }

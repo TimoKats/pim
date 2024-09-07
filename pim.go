@@ -33,6 +33,8 @@ func parseCommand(command []string, process lib.Process, database *lib.Database)
       return pim.ViewLog(database, command[2])
     case "ls":
       return pim.ListProcesses(process)
+    case "clean":
+      return pim.CleanDatabase(database)
     default:
       return errors.New("Command not found.")
     }
@@ -49,6 +51,7 @@ func main() {
     return
   }
   process, database, setupErr := pim.SetupYamlFiles()
+  pim.TrimDatabase(&database, 10)
   if setupErr != nil {
     lib.Error.Println(setupErr)
     return
