@@ -42,9 +42,9 @@ func InitFileLogging() {
 }
 
 func init() {
-  Info = log.New(os.Stdout, Blue + "info:    " + Reset, log.Ltime)
-  Warn = log.New(os.Stdout, Yellow + "warning: " + Reset, log.Ltime)
-  Error = log.New(os.Stdout, Red + "error:   " + Reset, log.Ltime)
-  Fatal = log.New(os.Stdout, Magenta + "fatal:   " + Reset, log.Ltime)
+  Info = log.New(os.Stdout, "", 0)
+  Warn = log.New(os.Stdout, Yellow + "warn:  " + Reset, 0)
+  Error = log.New(os.Stdout, Red + "error: " + Reset, 0)
+  Fatal = log.New(os.Stdout, Magenta + "fatal: " + Reset, 0)
 }
 
