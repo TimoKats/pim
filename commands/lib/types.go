@@ -6,6 +6,8 @@ import (
 
 type Process struct {
   Runs []Run `yaml:"process"`
+  OnlyStoreErrors bool `yaml:"only_store_errors"`
+  MaxLogs int `yaml:"max_logs"`
 }
 
 type Database struct {

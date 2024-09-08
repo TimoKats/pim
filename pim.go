@@ -9,10 +9,11 @@ import (
   "os"
 )
 
-func heartbeat() {
+func heartbeat(process lib.Process, database *lib.Database) {
   lib.Warn.Println("Starting the heartbeat for scheduled tasks. Run this in background!")
   for {
-    time.Sleep(time.Second)
+    time.Sleep(10 * time.Second)
+    pim.TrimDatabase(database, process.MaxLogs)
   }
 }
 
@@ -25,7 +26,7 @@ func parseCommand(command []string, process lib.Process, database *lib.Database)
       return pim.RunSelected(command[2], process, database)
     case "start":
       pim.RunSchedule(process, database)
-      heartbeat()
+      heartbeat(process, database)
     case "log":
       if len(command) < 3 {
         return pim.ViewLogs(database)
@@ -53,7 +54,7 @@ func main() {
     return
   }
   process, database, setupErr := pim.SetupYamlFiles()
-  pim.TrimDatabase(&database, 10)
+  pim.TrimDatabase(&database, process.MaxLogs)
   if setupErr != nil {
     lib.Error.Println(setupErr)
     return
