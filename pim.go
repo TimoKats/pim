@@ -38,6 +38,8 @@ func parseCommand(command []string, process lib.Process, database *lib.Database)
       return pim.CleanDatabase(database)
     case "info":
       return pim.Info()
+    case "stat":
+      return pim.GetStatistics(process, database)
     default:
       return errors.New("Command not found.")
     }
