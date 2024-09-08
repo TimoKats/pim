@@ -11,10 +11,12 @@ func ViewLog (database *lib.Database, logId string) error {
   for _, log := range database.Logs {
     if log.Id == logId {
       timeString := log.Timestamp.Format(time.RFC822Z)
-      cmd := lib.ResponsiveWhitespace(log.RunCommand.Command)
-      dir := lib.ResponsiveWhitespace(log.RunCommand.Directory)
-      schedule := lib.ResponsiveWhitespace(log.RunCommand.Schedule)
-      lib.Info.Printf("%d | %s | %s | %s | %s ", log.ExitCode, cmd, timeString, dir, schedule)
+      lib.Info.Printf("exit code: %d", log.ExitCode)
+      lib.Info.Printf("command: %s", log.RunCommand.Command)
+      lib.Info.Printf("timestamp: %s", timeString)
+      lib.Info.Printf("directory: %s", log.RunCommand.Directory)
+      lib.Info.Printf("schedule: %s", log.RunCommand.Schedule)
+      lib.Info.Println("command output:\n---\n")
       lib.Info.Println(log.Output)
       return nil
     }
