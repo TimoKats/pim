@@ -1,3 +1,6 @@
+// Triggered by the pim info command. Shows information related to this installation of
+// pim and its creator.
+
 package commands
 
 import (

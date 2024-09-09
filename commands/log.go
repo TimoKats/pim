@@ -1,3 +1,7 @@
+// Contains funtions related to showing logs of previous runs. If pim log is run, then
+// a summary/table is shown of all previous runs (also shows run-id). if pim log <run-id>
+// is run, then a more elaborate overview is shown with ViewLog.
+
 package commands
 
 import (

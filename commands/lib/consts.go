@@ -46,7 +46,6 @@ var PROCESSPATH string = CONFIGDIR + "process.yaml"
 var DATAPATH string = CONFIGDIR + "data.yaml"
 var LOGPATH string = LOGDIR + DefaultLogPath()
 var COLUMNWIDTH int = 20
-
 // meta info
 var VERSION string = "v0.0.1"
 var AUTHOR string = "Timo Kats"

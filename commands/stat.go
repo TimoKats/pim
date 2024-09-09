@@ -1,3 +1,7 @@
+// Contains a function that shows some statistics (runs, errors) for each run in your
+// current process.yaml. This module can be elaborated quite a bit probably but contains
+// enough for me.
+
 package commands
 
 import (

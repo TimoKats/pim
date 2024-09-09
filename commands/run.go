@@ -1,3 +1,7 @@
+// Most complex module. Contains functions related to executing the runs defined in the
+// process yaml. There is a function for a selected run (pim run <run-name>) and a
+// scheduled run. The function runAndStore is used by both functions.
+
 package commands
 
 import (
