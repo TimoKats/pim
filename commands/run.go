@@ -23,7 +23,10 @@ func runAndStore(run lib.Run, database *lib.Database, process lib.Process, showO
   storedLog := lib.StoreRun(run, output, status)
   database.Logs = append(database.Logs, storedLog)
   if (!process.OnlyStoreErrors) || (process.OnlyStoreErrors && status != 0) {
-    lib.WriteDataYaml(lib.DATAPATH, *database)
+    writeErr := lib.WriteDataYaml(lib.DATAPATH, *database)
+    if writeErr != nil {
+      lib.Warn.Printf("process %s is not stored in database.", run.Name)
+    }
   }
 }
 

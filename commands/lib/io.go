@@ -17,8 +17,8 @@ func ReadDataYaml() (Database, error) {
     return database, yamlErr
   } else if errors.Is(fileErr, os.ErrNotExist) {
     Warn.Printf("Creating new data file at %s", PROCESSPATH)
-    os.Create(PROCESSPATH)
-    return database, nil
+    _, createErr := os.Create(PROCESSPATH)
+    return database, createErr
   }
   return database, fileErr
 }

@@ -22,9 +22,9 @@ func formatProcessName(processName string) string {
 
 func formatProcess(process *lib.Process) {
   var processName string
-  for index, _ := range process.Runs {
-    processName = process.Runs[index].Name
-    process.Runs[index].Name = formatProcessName(processName)
+  for i := 0; i < len(process.Runs); i++ {
+    processName = process.Runs[i].Name
+    process.Runs[i].Name = formatProcessName(processName)
   }
 }
 

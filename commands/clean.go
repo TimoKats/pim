@@ -15,14 +15,20 @@ func TrimDatabase(database *lib.Database, threshold int) {
   if len(database.Logs) > threshold && threshold != 0 {
     database.Logs = database.Logs[len(database.Logs) - threshold:]
   }
-  lib.WriteDataYaml(lib.DATAPATH, *database)
+  writeErr := lib.WriteDataYaml(lib.DATAPATH, *database)
+  if writeErr != nil {
+    lib.Warn.Println("Wasn't able to trim database. Continuing operations...")
+  }
 }
 
 func CleanDatabase(database *lib.Database) error {
   database.Logs = nil
-  lib.WriteDataYaml(lib.DATAPATH, *database)
+  writeErr := lib.WriteDataYaml(lib.DATAPATH, *database)
+  if writeErr != nil {
+    return writeErr
+  }
   os.RemoveAll(lib.LOGDIR)
-  os.Mkdir(lib.LOGDIR, 0755)
-  return nil
+  makeErr := os.Mkdir(lib.LOGDIR, 0755)
+  return makeErr
 }
 

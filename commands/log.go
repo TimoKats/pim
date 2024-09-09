@@ -20,7 +20,7 @@ func ViewLog (database *lib.Database, logId string) error {
       lib.Info.Printf("timestamp: %s", timeString)
       lib.Info.Printf("directory: %s", log.RunCommand.Directory)
       lib.Info.Printf("schedule: %s", log.RunCommand.Schedule)
-      lib.Info.Println("command output:\n---\n")
+      lib.Info.Println("command output:\n---")
       lib.Info.Println(log.Output)
       return nil
     }

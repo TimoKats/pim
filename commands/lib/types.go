@@ -27,5 +27,5 @@ type Run struct {
   Directory string `yaml:"directory"`
   Schedule string `yaml:"schedule"`
   Command string `yaml:"command"` // NOTE: Parse this to be split on spaces!
-  Duration int `yaml: "duration"`
+  Duration int `yaml:"duration"`
 }

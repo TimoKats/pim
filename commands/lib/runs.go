@@ -21,7 +21,7 @@ func generateLogName(length int) string {
 func getCommandLogs(filename string) string {
   content, fileErr := os.ReadFile(filename)
   cmd := exec.Command("rm", filename)
-  defer cmd.Run()
+  defer cmd.Run() //nolint:errcheck
   if fileErr != nil {
     Error.Printf("Can't read from temp log file %s", filename)
     return ""
@@ -47,14 +47,14 @@ func ExecuteTimedRun(run Run, showOutput bool, duration int) (string, int) {
   log, _ := os.Create(logName)
 	defer log.Close()
   app, args := formatCommand(run.Command)
-  ctx, _ := context.WithTimeout(context.Background(), time.Duration(duration) * time.Second)
+  ctx, _ := context.WithTimeout(context.Background(), time.Duration(duration) * time.Second) //nolint:govet
   cmd := exec.CommandContext(ctx, app, args...)
   cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
   cmd.Dir = run.Directory
   cmd.Env = os.Environ()
 	cmd.Stdout = log
   if runErr := cmd.Run(); runErr != nil {
-    syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL)
+    syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL) //nolint:errcheck
     return getCommandLogs(logName), 0
   }
   return "not terminated", 1
