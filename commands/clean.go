@@ -11,17 +11,7 @@ import (
   "os"
 )
 
-func TrimDatabase(database *lib.Database, threshold int) {
-  if len(database.Logs) > threshold && threshold != 0 {
-    database.Logs = database.Logs[len(database.Logs) - threshold:]
-  }
-  writeErr := lib.WriteDataYaml(lib.DATAPATH, *database)
-  if writeErr != nil {
-    lib.Warn.Println("Wasn't able to trim database. Continuing operations...")
-  }
-}
-
-func CleanDatabase(database *lib.Database) error {
+func CleanCommand(database *lib.Database) error {
   database.Logs = nil
   writeErr := lib.WriteDataYaml(lib.DATAPATH, *database)
   if writeErr != nil {

@@ -42,7 +42,7 @@ func formatCommand(command string) (string, []string)  {
   return app, args
 }
 
-func ExecuteTimedRun(run Run, showOutput bool, duration int) (string, int) {
+func executeTimedRun(run Run, showOutput bool, duration int) (string, int) {
   logName := generateLogName(5)
   log, _ := os.Create(logName)
 	defer log.Close()
@@ -60,7 +60,7 @@ func ExecuteTimedRun(run Run, showOutput bool, duration int) (string, int) {
   return "not terminated", 1
 }
 
-func ExecuteRun(run Run, showOutput bool) (string, int) {
+func executeRun(run Run, showOutput bool) (string, int) {
   var exitErr *exec.ExitError
   app, args := formatCommand(run.Command)
   cmd := exec.Command(app, args...)
@@ -77,3 +77,20 @@ func ExecuteRun(run Run, showOutput bool) (string, int) {
   return string(runOutput), 0
 }
 
+func RunAndStore(run Run, database *Database, process Process, showOutput bool) {
+  var output string
+  var status int
+  if run.Duration != 0 {
+    output, status = executeTimedRun(run, showOutput, run.Duration)
+  } else {
+    output, status = executeRun(run, showOutput)
+  }
+  storedLog := StoreRun(run, output, status)
+  database.Logs = append(database.Logs, storedLog)
+  if (!process.OnlyStoreErrors) || (process.OnlyStoreErrors && status != 0) {
+    writeErr := WriteDataYaml(DATAPATH, *database)
+    if writeErr != nil {
+      Warn.Printf("process %s is not stored in database.", run.Name)
+    }
+  }
+}

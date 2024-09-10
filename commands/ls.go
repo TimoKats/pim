@@ -6,7 +6,7 @@ import (
   lib "github.com/TimoKats/pim/commands/lib"
 )
 
-func ListProcesses(process lib.Process) error {
+func ListCommand(process lib.Process) error {
   for _, run := range process.Runs {
     name := lib.ResponsiveWhitespace(run.Name)
     cmd := lib.ResponsiveWhitespace(run.Command)

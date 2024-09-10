@@ -46,3 +46,13 @@ func WriteDataYaml(filename string, database Database) error {
   return nil
 }
 
+func TrimDatabase(database *Database, threshold int) {
+  if len(database.Logs) > threshold && threshold != 0 {
+    database.Logs = database.Logs[len(database.Logs) - threshold:]
+  }
+  writeErr := WriteDataYaml(DATAPATH, *database)
+  if writeErr != nil {
+    Warn.Println("Wasn't able to trim database. Continuing operations...")
+  }
+}
+

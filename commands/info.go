@@ -7,7 +7,7 @@ import (
   lib "github.com/TimoKats/pim/commands/lib"
 )
 
-func Info() error {
+func InfoCommand() error {
   lib.Info.Println("Description : Pim is a process orchestrator.")
   lib.Info.Printf("Version     : %s", lib.VERSION)
   lib.Info.Printf("Author      : %s", lib.AUTHOR)

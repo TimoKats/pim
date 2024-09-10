@@ -11,7 +11,7 @@ import (
   "time"
 )
 
-func ViewLog (database *lib.Database, logId string) error {
+func viewLog (database *lib.Database, logId string) error {
   for _, log := range database.Logs {
     if log.Id == logId {
       timeString := log.Timestamp.Format(time.RFC822Z)
@@ -28,7 +28,7 @@ func ViewLog (database *lib.Database, logId string) error {
   return errors.New("Log id not found in data.")
 }
 
-func ViewLogs (database *lib.Database) error {
+func viewLogs (database *lib.Database) error {
   for _, log := range database.Logs {
     timeString := log.Timestamp.Format(time.RFC822Z)
     id := lib.ResponsiveWhitespace(log.Id)
@@ -36,5 +36,12 @@ func ViewLogs (database *lib.Database) error {
     lib.Info.Printf("%d | %s | %s | %s", log.ExitCode, name, timeString, id)
   }
   return nil
+}
+
+func LogCommand(command []string, database *lib.Database) error {
+  if len(command) < 3 {
+    return viewLogs(database)
+  }
+  return viewLog(database, command[2])
 }
 

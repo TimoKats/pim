@@ -28,7 +28,7 @@ func countRuns(logs []lib.Log, processName string) int {
   return runCount
 }
 
-func GetStatistics(process lib.Process, database *lib.Database) error {
+func StatCommand(process lib.Process, database *lib.Database) error {
   totalRuns := countRuns(database.Logs, "")
   totalErrors := countErrors(database.Logs, "")
   for _, run := range process.Runs {
