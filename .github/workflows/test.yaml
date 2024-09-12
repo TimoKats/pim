@@ -8,29 +8,14 @@ on:
 
 jobs:
   createfile:
-    name: Create process file
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: 1arp/create-a-file-action@0.4.5
-        with:
-          path: '/github/home/.pim'
-          isAbsolutePath: true
-          file: 'process.yaml'
-          content: |
-            max_logs: 2
-            only_store_errors: true
-            process:
-              - run:
-                name: apt-update
-                schedule: '@hourly'
-                directory: /home/test/
-                command: sudo apt update -y
+      - name: Group of log lines
+        run: |
+            pwd
+            whoami
+            echo ~
 
-              - run:
-                name: python-version
-                schedule: '0 * * * * *'
-                command: python3 test.py
   testing:
     name: unit tests
     needs: createfile
