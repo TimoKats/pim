@@ -7,15 +7,15 @@ on:
             - main
 
 jobs:
-  createFile:
-    name: Create A File
+  createfile:
+    name: Create process file
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: 1arp/create-a-file-action@0.4.5
         with:
-          path: '~/.pim/'
-          isAbsolutePath: false
+          path: '/root/home/.pim'
+          isAbsolutePath: true
           file: 'process.yaml'
           content: |
             max_logs: 2
@@ -33,6 +33,7 @@ jobs:
                 command: python3 test.py
   testing:
     name: unit tests
+    needs: createfile
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
