@@ -40,6 +40,7 @@ jobs:
         run: |
             ls -all
             pwd
+            echo testing > process.yaml
 
   testing:
     name: unit tests
