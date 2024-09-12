@@ -7,18 +7,23 @@ import (
   "testing"
 )
 
-var process lib.Process
 var database lib.Database
-
-func TestSetup(t *testing.T) {
-  processTemp, databaseTemp, setupErr := pim.SetupYamlFiles()
-  lib.Info.Printf("HELLO TIMO! %s", lib.PROCESSPATH)
-  if setupErr != nil {
-    t.Errorf("Error in setup: %v", setupErr)
-  }
-  process = processTemp
-  database = databaseTemp
+var process = lib.Process{
+  Runs:[]lib.Run{
+    lib.Run{
+      Name: "linux-command",
+      Schedule: "@hourly",
+      Command: "echo hello world",
+    },
+    lib.Run{
+      Name: "sleepy-command",
+      Schedule: "@hourly",
+      Command: "sleep 50",
+      Duration: 10,
+    },
+  },
 }
+
 
 func TestLs(t *testing.T) {
   cmdErr := pim.ListCommand(process)
@@ -27,8 +32,16 @@ func TestLs(t *testing.T) {
   }
 }
 
-func TestRun(t *testing.T) {
-  command := []string{"one", "sleep", "python-version"}
+func TestNonTimedRun(t *testing.T) {
+  command := []string{"one", "sleep", "linux-command"}
+  cmdErr := pim.RunCommand(command, process, &database)
+  if cmdErr != nil {
+    t.Errorf("Error in run command: %v", cmdErr)
+  }
+}
+
+func TestTimedRun(t *testing.T) {
+  command := []string{"one", "sleep", "sleepy-command"}
   cmdErr := pim.RunCommand(command, process, &database)
   if cmdErr != nil {
     t.Errorf("Error in run command: %v", cmdErr)

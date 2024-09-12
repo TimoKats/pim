@@ -1,47 +1,12 @@
 name: Test
 
 on:
-    pull_request:
-        types: [opened, reopened, synchronize]
-        branches:
-            - main
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches:
+      - main
 
 jobs:
-  createfile:
-    name: Create process file
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: 1arp/create-a-file-action@0.4.5
-        with:
-          path: /home/runner/work/pim/pim
-          isAbsolutePath: true
-          file: 'process.yaml'
-          content: |
-            max_logs: 2
-            only_store_errors: true
-            process:
-              - run:
-                name: apt-update
-                schedule: '@hourly'
-                directory: /home/test/
-                command: sudo apt update -y
-
-              - run:
-                name: python-version
-                schedule: '0 * * * * *'
-                command: python3 test.py
-
-  bash-example:
-    runs-on: ubuntu-latest
-    needs: createfile
-    steps:
-      - name: Group of log lines
-        run: |
-            ls -all
-            pwd
-            echo testing > process.yaml
-
   testing:
     name: unit tests
     needs: createfile
@@ -57,6 +22,7 @@ jobs:
 
   linter:
     name: linter check
+    needs: testing
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
