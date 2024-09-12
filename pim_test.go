@@ -12,6 +12,7 @@ var database lib.Database
 
 func TestSetup(t *testing.T) {
   processTemp, databaseTemp, setupErr := pim.SetupYamlFiles()
+  lib.Info.Printf("HELLO TIMO! %s", lib.CONFIGDIR)
   if setupErr != nil {
     t.Errorf("Error in setup: %v", setupErr)
   }
