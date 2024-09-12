@@ -6,6 +6,8 @@ import (
 
 type Process struct {
   Runs []Run `yaml:"process"`
+  OnlyStoreErrors bool `yaml:"only_store_errors"`
+  MaxLogs int `yaml:"max_logs"`
 }
 
 type Database struct {
@@ -13,6 +15,7 @@ type Database struct {
 }
 
 type Log struct {
+  Id string
   RunCommand Run
   Output string
   ExitCode int
@@ -24,4 +27,5 @@ type Run struct {
   Directory string `yaml:"directory"`
   Schedule string `yaml:"schedule"`
   Command string `yaml:"command"` // NOTE: Parse this to be split on spaces!
+  Duration int `yaml:"duration"`
 }

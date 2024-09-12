@@ -1,9 +1,0 @@
-- make a sprint board for this
-
-I want to select whether I see the output on the standard out or not
-I want to see in logs whether it was scheduled run or not
-Perhaps add the command functions to a seperate lib
-A lock file that prevents writing to the same file twice
-Better dealing with yaml files (their locations specifically)
-Check the naming in the test yaml, it can't contain spaces! So reformat that to lowercase with -!
-
