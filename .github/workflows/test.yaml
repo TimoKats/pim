@@ -9,7 +9,6 @@ on:
 jobs:
   testing:
     name: unit tests
-    needs: createfile
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
