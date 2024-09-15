@@ -32,12 +32,12 @@ func parseCommand(command []string, process lib.Process, database *lib.Database)
 }
 
 func main() {
-  if len(os.Args) < 2 {
-    lib.Error.Println("Not enough arguments. pim <<run, start, ls, log, clean>>.")
-    return
-  }
   if startupErr := pim.CheckStartupErrors(); startupErr != nil {
     lib.Error.Println(startupErr)
+    return
+  }
+  if len(os.Args) < 2 {
+    lib.Error.Println("Not enough arguments. pim <<run, start, ls, log, clean>>.")
     return
   }
   process, database, setupErr := pim.SetupYamlFiles()
