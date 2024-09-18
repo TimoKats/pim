@@ -10,11 +10,8 @@ package commands
 import (
   lib "github.com/TimoKats/pim/commands/lib"
 
-  "strconv"
   "errors"
   "time"
-  "os/exec"
-  "os"
 
   "github.com/robfig/cron"
 )
@@ -27,44 +24,14 @@ func heartbeat(process lib.Process, database *lib.Database) {
   }
 }
 
-func removeLockFile() error {
-  cmd := exec.Command("rm", lib.LOCKPATH)
-  return cmd.Run() //nolint:errcheck
-}
-
-func initLock() error {
-  currentPid := strconv.Itoa(os.Getpid())
-  lockErr := os.WriteFile(lib.LOCKPATH, []byte(currentPid), 0644)
-  return lockErr
-}
-
-func lockExists() bool {
-  if _, lockErr := os.Stat(lib.LOCKPATH); errors.Is(lockErr, os.ErrNotExist) {
-    return false
+func StartCommand(process lib.Process, database *lib.Database) error {
+  if lib.LockExists() {
+    return errors.New("Pim is already running! Run <<pim stop>> or check lockfile.")
   }
-  return true
-}
-
-func quitProcess() error {
-  if !lockExists() {
-    return errors.New("no process to end.")
-  }
-  bytePid, lockErr := os.ReadFile(lib.LOCKPATH)
+  lib.InitFileLogging()
+  lockErr := lib.InitLockFile()
   if lockErr != nil {
     return lockErr
-  }
-  removeLockFile()
-  strPid := string(bytePid) // NOTE: Make a converter class in lib
-  intPid, _ := strconv.Atoi(strPid)
-  process, _ := os.FindProcess(intPid)
-  process.Kill()
-  return nil
-}
-
-func StartCommand(process lib.Process, database *lib.Database) error {
-  lib.InitFileLogging()
-  if !lockExists() {
-    return errors.New("Pim is already running! Check lockfile for PID.")
   }
   cronSchedule := cron.New()
   for _, run := range process.Runs {

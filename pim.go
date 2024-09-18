@@ -14,7 +14,9 @@ func parseCommand(command []string, process lib.Process, database *lib.Database)
     case "run":
       return pim.RunCommand(command, process, database)
     case "start":
-      pim.StartCommand(process, database)
+      return pim.StartCommand(process, database)
+    case "stop":
+      return pim.StopCommand()
     case "log":
       return pim.LogCommand(command, database)
     case "ls":
@@ -28,7 +30,6 @@ func parseCommand(command []string, process lib.Process, database *lib.Database)
     default:
       return errors.New("Command not found.")
     }
-  return nil
 }
 
 func main() {
@@ -37,7 +38,7 @@ func main() {
     return
   }
   if len(os.Args) < 2 {
-    lib.Error.Println("Not enough arguments. pim <<run, start, ls, log, clean>>.")
+    lib.Error.Println(lib.HELPSTRING)
     return
   }
   process, database, setupErr := pim.SetupYamlFiles()
