@@ -10,11 +10,8 @@ package commands
 import (
   lib "github.com/TimoKats/pim/commands/lib"
 
-
+  "errors"
   "time"
-  "strconv"
-  "time"
-  "os"
 
   "github.com/robfig/cron"
 )
@@ -27,15 +24,15 @@ func heartbeat(process lib.Process, database *lib.Database) {
   }
 }
 
-func initLock() error {
-  currentPid := strconv.Itoa(os.Getpid())
-  lockErr := os.WriteFile(lib.LOCKPATH, []byte(currentPid), 0644)
-  return lockErr
-}
-
-func StartCommand(process lib.Process, database *lib.Database) {
-  initLock()
+func StartCommand(process lib.Process, database *lib.Database) error {
+  if lib.LockExists() {
+    return errors.New("Pim is already running! Run <<pim stop>> or check lockfile.")
+  }
   lib.InitFileLogging()
+  lockErr := lib.InitLockFile()
+  if lockErr != nil {
+    return lockErr
+  }
   cronSchedule := cron.New()
   for _, run := range process.Runs {
     run := run
@@ -49,4 +46,5 @@ func StartCommand(process lib.Process, database *lib.Database) {
   }
   cronSchedule.Start()
   heartbeat(process, database)
+  return nil
 }

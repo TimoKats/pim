@@ -36,6 +36,20 @@ func DefaultLogPath() string {
   return currentTime.Format("2006-01-02") + ".log"
 }
 
+// somewhat anomalous, but it's a const and it's used so it belongs here...
+const HELPSTRING = `Usage: pim <<command>>
+
+  Commands:
+  - run <<command-name>>: Runs a command by the name defined in your process YAML.
+  - start: Starts the cron schedule defined in your process YAML.
+  - stop: Stops the cron schedule started by running: pim start.
+  - ls: Lists all the commands and their characteristics defined in your process YAML.
+  - log <<optional:run-id>>: Show all logs, or a log of a specific run.
+  - clean: Clean log files.
+  - stat: Show runs/error rates of the commands defined in your YAML.
+  - info: Shows some info about the author/license.
+  `
+
 // these are checked on startup
 var CONFIGDIR, CONFIGERR = DefaultConfigDir()
 var LOGDIR, LOGERR = DefaultLogDir(CONFIGDIR)
