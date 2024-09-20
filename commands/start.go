@@ -25,6 +25,7 @@ func heartbeat(process lib.Process, database *lib.Database) {
 }
 
 func StartCommand(process lib.Process, database *lib.Database) error {
+  lib.RemoveDanglingLock()
   if lib.LockExists() {
     return errors.New("Pim is already running! Run <<pim stop>> or check lockfile.")
   }

@@ -77,6 +77,19 @@ func executeRun(run Run, showOutput bool) (string, int) {
   return string(runOutput), 0
 }
 
+func ExecuteCommand(command string) (string, int) {
+  var exitErr *exec.ExitError
+  app, args := formatCommand(command)
+  cmd := exec.Command(app, args...)
+  runOutput, runErr := cmd.CombinedOutput()
+  if errors.As(runErr, &exitErr) {
+    return string(runOutput), exitErr.ExitCode()
+  } else if runErr != nil {
+    return string(runOutput), -1
+  }
+  return string(runOutput), 0
+}
+
 func RunAndStore(run Run, database *Database, process Process, showOutput bool) {
   var output string
   var status int
