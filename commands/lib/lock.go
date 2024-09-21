@@ -47,8 +47,11 @@ func RemoveDanglingLock() {
       processCount += 1
     }
   }
-  if processCount < 2 {
-    RemoveLockFile()
+  if processCount < 2 && LockExists() {
+    removeErr := RemoveLockFile()
+    if removeErr != nil {
+      Error.Println("Failed removing dangling lock file.")
+    }
   }
 }
 
