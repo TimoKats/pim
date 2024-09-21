@@ -23,8 +23,6 @@ func parseCommand(command []string, process lib.Process, database *lib.Database)
       return pim.ListCommand(process)
     case "clean":
       return pim.CleanCommand(database)
-    case "info":
-      return pim.InfoCommand()
     case "stat":
       return pim.StatCommand(process, database)
     default:

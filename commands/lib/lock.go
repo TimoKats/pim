@@ -3,6 +3,7 @@ package lib
 import (
   "strconv"
   "os/exec"
+  "strings"
   "errors"
   "os"
 )
@@ -36,5 +37,21 @@ func ReadLockFile() (int, error) {
     return 0, convErr
   }
   return intPid, nil
+}
+
+func RemoveDanglingLock() {
+  processCount := 0
+  test, _ := ExecuteCommand("ps -u")
+  for _, line := range strings.Split(test, "\n") {
+    if strings.Contains(line, "pim start") {
+      processCount += 1
+    }
+  }
+  if processCount < 2 && LockExists() {
+    removeErr := RemoveLockFile()
+    if removeErr != nil {
+      Error.Println("Failed removing dangling lock file.")
+    }
+  }
 }
 

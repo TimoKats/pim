@@ -56,13 +56,6 @@ func TestLog(t *testing.T) {
   }
 }
 
-func TestInfo(t *testing.T) {
-  cmdErr := pim.InfoCommand()
-  if cmdErr != nil {
-    t.Errorf("Error in info command: %v", cmdErr)
-  }
-}
-
 func TestStat(t *testing.T) {
   cmdErr := pim.StatCommand(process, &database)
   if cmdErr != nil {

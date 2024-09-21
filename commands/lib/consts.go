@@ -47,7 +47,6 @@ const HELPSTRING = `Usage: pim <<command>>
   - log <<optional:run-id>>: Show all logs, or a log of a specific run.
   - clean: Clean log files.
   - stat: Show runs/error rates of the commands defined in your YAML.
-  - info: Shows some info about the author/license.
   `
 
 // these are checked on startup
@@ -61,6 +60,7 @@ var DATAPATH string = CONFIGDIR + "data.yaml"
 var LOCKPATH string = CONFIGDIR + "pim.lock"
 var LOGPATH string = LOGDIR + DefaultLogPath()
 var COLUMNWIDTH int = 20
+
 // meta info
 var VERSION string = "v0.0.1"
 var AUTHOR string = "Timo Kats"
