@@ -57,7 +57,8 @@ var LOGDIR, LOGERR = DefaultLogDir(CONFIGDIR)
 var IDCHARSET string = "abcdefghijklmnopqrstuvwxyz"
 var PROCESSPATH string = CONFIGDIR + "process.yaml"
 var DATAPATH string = CONFIGDIR + "data.yaml"
-var LOCKPATH string = CONFIGDIR + "pim.lock"
+var LOCKPATH string = CONFIGDIR + "lockfile"
+var CHECKPOINTPATH string = CONFIGDIR + "checkpoint"
 var LOGPATH string = LOGDIR + DefaultLogPath()
 var COLUMNWIDTH int = 20
 

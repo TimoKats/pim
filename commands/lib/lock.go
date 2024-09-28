@@ -2,15 +2,14 @@ package lib
 
 import (
   "strconv"
-  "os/exec"
   "strings"
   "errors"
   "os"
 )
 
 func RemoveLockFile() error {
-  cmd := exec.Command("rm", LOCKPATH)
-  return cmd.Run() //nolint:errcheck
+  removeErr := os.Remove(LOCKPATH)
+  return removeErr
 }
 
 func InitLockFile() error {
