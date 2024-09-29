@@ -3,7 +3,6 @@ package lib
 import (
   "gopkg.in/yaml.v2"
   "errors"
-  "time"
   "os"
 )
 
@@ -55,16 +54,5 @@ func TrimDatabase(database *Database, threshold int) {
   if writeErr != nil {
     Warn.Println("Wasn't able to trim database. Continuing operations...")
   }
-}
-
-func WriteCheckpoint() error {
-  currentDatetime := time.Now().Format(time.RFC850)
-  checkpointErr := os.WriteFile(CHECKPOINTPATH, []byte(currentDatetime), 0644)
-  return checkpointErr
-}
-
-func RemoveCheckpoint() error {
-  removeErr := os.Remove(CHECKPOINTPATH)
-  return removeErr
 }
 

@@ -10,18 +10,21 @@ package commands
 import (
   lib "github.com/TimoKats/pim/commands/lib"
 
+  "strings"
   "errors"
   "time"
 
   "github.com/go-co-op/gocron"
 )
 
-func heartbeat(process lib.Process, database *lib.Database) {
+func heartbeat(process lib.Process, database *lib.Database, schedule *gocron.Scheduler) {
   lib.Warn.Println("Starting the heartbeat for scheduled tasks. Run this in background!")
   for {
-    time.Sleep(30 * time.Second)
+    time.Sleep(10 * time.Second)
     lib.TrimDatabase(database, process.MaxLogs)
-    lib.WriteCheckpoint()
+    if checkpointErr := lib.WriteCheckpoint(process.Runs, schedule); checkpointErr != nil {
+      lib.Error.Println(checkpointErr)
+    }
   }
 }
 
@@ -38,26 +41,45 @@ func setupStart() error {
   return nil
 }
 
-func catchup() {
+// func catchup(schedule *gocron.Scheduler) {
+//   _, checkpointErr := lib.ReadCheckpoint()
+//   if checkpointErr != nil {
+//     lib.Error.Println(checkpointErr)
+//     return
+//   }
+//   for _, job := range schedule.Jobs() {
+//     lib.Info.Println(job.NextRun())
+//   }
+// }
 
+func selectCron(
+  run lib.Run, process lib.Process, database *lib.Database,
+  schedule *gocron.Scheduler) (*gocron.Job, error) { // NOTE: schedule can be global var
+  if strings.HasPrefix(run.Schedule, "@times;") {
+    return schedule.Every(1).Month(2).At(run.Schedule[7:]).Do( func () {
+      lib.Info.Printf("Now running '%s'", run.Name)
+      lib.RunAndStore(run, database, process, false)
+    })
+  }
+  return schedule.Cron(run.Schedule).Do( func () {
+    lib.Info.Printf("Now running '%s'", run.Name)
+    lib.RunAndStore(run, database, process, false)
+  })
 }
 
 func StartCommand(process lib.Process, database *lib.Database) error {
   if setupErr := setupStart(); setupErr != nil {
     return setupErr
   }
-  cronSchedule := gocron.NewScheduler(time.Local)
+  schedule := gocron.NewScheduler(time.Local)
   for _, run := range process.Runs {
     run := run
-    _, cronErr := cronSchedule.Cron(run.Schedule).Do( func ()  {
-       lib.Info.Printf("Now running '%s'", run.Name)
-       lib.RunAndStore(run, database, process, false)
-    })
+    _, cronErr := selectCron(run, process, database, schedule)
     if cronErr != nil {
-      lib.Error.Printf("Error in '%s'. Check Yaml.", run.Name)
+      lib.Error.Printf("Error in '%s'. %v.", run.Name, cronErr)
     }
   }
-  cronSchedule.StartAsync()
-  heartbeat(process, database)
+  schedule.StartAsync()
+  heartbeat(process, database, schedule)
   return nil
 }
