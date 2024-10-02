@@ -15,17 +15,16 @@ func CreateCheckpoint(runs []Run, schedule *gocron.Scheduler) Checkpoint {
     checkpoints = append(
       checkpoints,
       RunCheckpoint{
-        NextRun: job.NextRun(),
+        Next: job.NextRun(),
         Name: runs[index].Name,
       })
   }
-  return Checkpoint{Test: "hello", RunCheckpoints: checkpoints}
+  return Checkpoint{Updated: time.Now(), Runs: checkpoints}
 }
 
 func WriteCheckpoint(runs []Run, schedule *gocron.Scheduler) error {
   checkpoint := CreateCheckpoint(runs, schedule) // NOTE: I AM HERE
   yamlData, yamlErr := yaml.Marshal(&checkpoint)
-  Warn.Printf("> %v", yamlData)
   writeErr := os.WriteFile(CHECKPOINTPATH, yamlData, 0644)
   if err := errors.Join(yamlErr, writeErr); err != nil {
     return err
@@ -38,13 +37,16 @@ func RemoveCheckpoint() error {
   return removeErr
 }
 
-func ReadCheckpoint() (time.Time, error) {
-  byteCheckpoint, readErr := os.ReadFile(CHECKPOINTPATH)
-  if readErr != nil {
-    return time.Now(), readErr
+func ReadCheckpoint() (Checkpoint, error) {
+  var checkpoint Checkpoint
+  yamlFile, fileErr := os.ReadFile(CHECKPOINTPATH)
+  if fileErr == nil {
+    yamlErr := yaml.Unmarshal(yamlFile, &checkpoint)
+    if yamlErr == nil {
+      return checkpoint, nil
+    }
+    return checkpoint, yamlErr
   }
-  strCheckpoint := string(byteCheckpoint)
-  timeCheckpoint, convertErr := time.Parse(time.RFC850, strCheckpoint)
-  return timeCheckpoint, convertErr
+  return checkpoint, errors.New("No checkpoint found")
 }
 

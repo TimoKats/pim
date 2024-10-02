@@ -33,12 +33,12 @@ type Run struct {
 // checkpoints
 
 type RunCheckpoint struct {
-  NextRun time.Time
+  Next time.Time
   Name string
 }
 
 type Checkpoint struct {
-  Test string
-  RunCheckpoints []RunCheckpoint
+  Updated time.Time
+  Runs []RunCheckpoint
 }
 
