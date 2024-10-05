@@ -53,7 +53,8 @@ func catchup() {
   for _, run := range checkpoint.Runs {
     if run.Next.Before(time.Now()) && run.Catchup {
       lib.Info.Printf("Catch up for '%s'", run.Name)
-      schedule.RunByTag(run.Name)
+      runErr := schedule.RunByTag(run.Name)
+      if runErr != nil { lib.Error.Println(runErr) }
     }
   }
 }
