@@ -10,6 +10,7 @@ package commands
 import (
   lib "github.com/TimoKats/pim/commands/lib"
 
+  "strconv"
   "strings"
   "errors"
   "time"
@@ -57,6 +58,17 @@ func catchup() {
   }
 }
 
+func runOnStart(run lib.Run, process lib.Process, database *lib.Database) {
+  delay := strings.Split(run.Schedule, "+")
+  if len(delay) > 1 {
+    if delayInt, err := strconv.Atoi(delay[1]); err == nil {
+      time.Sleep(time.Duration(delayInt) * time.Second)
+    }
+  }
+  lib.Info.Printf("Now running '%s'", run.Name)
+  lib.RunAndStore(run, database, process, false)
+}
+
 func selectCron(run lib.Run, process lib.Process, database *lib.Database) (*gocron.Job, error) {
   switch {
     case strings.HasPrefix(run.Schedule, "@times;"):
@@ -64,9 +76,8 @@ func selectCron(run lib.Run, process lib.Process, database *lib.Database) (*gocr
         lib.Info.Printf("Now running '%s'", run.Name)
         lib.RunAndStore(run, database, process, false)
       })
-    case run.Schedule == "@start":
-      lib.Info.Printf("Now running '%s'", run.Name)
-      lib.RunAndStore(run, database, process, false)
+    case strings.HasPrefix(run.Schedule, "@start"):
+      go runOnStart(run, process, database)
       return nil, nil
     default:
       return schedule.Cron(run.Schedule).Do( func () {
