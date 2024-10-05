@@ -17,13 +17,14 @@ func CreateCheckpoint(runs []Run, schedule *gocron.Scheduler) Checkpoint {
       RunCheckpoint{
         Next: job.NextRun(),
         Name: runs[index].Name,
+        Catchup: runs[index].Catchup,
       })
   }
   return Checkpoint{Updated: time.Now(), Runs: checkpoints}
 }
 
 func WriteCheckpoint(runs []Run, schedule *gocron.Scheduler) error {
-  checkpoint := CreateCheckpoint(runs, schedule) // NOTE: I AM HERE
+  checkpoint := CreateCheckpoint(runs, schedule)
   yamlData, yamlErr := yaml.Marshal(&checkpoint)
   writeErr := os.WriteFile(CHECKPOINTPATH, yamlData, 0644)
   if err := errors.Join(yamlErr, writeErr); err != nil {

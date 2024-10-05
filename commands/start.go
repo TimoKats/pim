@@ -50,7 +50,7 @@ func catchup() {
     return
   }
   for _, run := range checkpoint.Runs {
-    if run.Next.Before(time.Now()) {
+    if run.Next.Before(time.Now()) && run.Catchup {
       lib.Info.Printf("Catch up for '%s'", run.Name)
       schedule.RunByTag(run.Name)
     }
@@ -58,16 +58,22 @@ func catchup() {
 }
 
 func selectCron(run lib.Run, process lib.Process, database *lib.Database) (*gocron.Job, error) {
-  if strings.HasPrefix(run.Schedule, "@times;") {
-    return schedule.Every(1).Day().At(run.Schedule[7:]).Do( func () {
+  switch {
+    case strings.HasPrefix(run.Schedule, "@times;"):
+      return schedule.Every(1).Day().At(run.Schedule[7:]).Do( func () {
+        lib.Info.Printf("Now running '%s'", run.Name)
+        lib.RunAndStore(run, database, process, false)
+      })
+    case run.Schedule == "@start":
       lib.Info.Printf("Now running '%s'", run.Name)
       lib.RunAndStore(run, database, process, false)
-    })
+      return nil, nil
+    default:
+      return schedule.Cron(run.Schedule).Do( func () {
+        lib.Info.Printf("Now running '%s'", run.Name)
+        lib.RunAndStore(run, database, process, false)
+      })
   }
-  return schedule.Cron(run.Schedule).Do( func () {
-    lib.Info.Printf("Now running '%s'", run.Name)
-    lib.RunAndStore(run, database, process, false)
-  })
 }
 
 func StartCommand(process lib.Process, database *lib.Database) error {
@@ -78,9 +84,10 @@ func StartCommand(process lib.Process, database *lib.Database) error {
   for _, run := range process.Runs {
     run := run
     cronJob, cronErr := selectCron(run, process, database)
-    cronJob.Tag(run.Name)
     if cronErr != nil {
       lib.Error.Printf("Error in '%s'. %v.", run.Name, cronErr)
+    } else if cronJob != nil {
+      cronJob.Tag(run.Name)
     }
   }
   schedule.StartAsync()

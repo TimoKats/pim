@@ -28,6 +28,7 @@ type Run struct {
   Schedule string `yaml:"schedule"`
   Command string `yaml:"command"`
   Duration int `yaml:"duration"`
+  Catchup bool `yaml:"catchup"`
 }
 
 // checkpoints
@@ -35,6 +36,7 @@ type Run struct {
 type RunCheckpoint struct {
   Next time.Time
   Name string
+  Catchup bool
 }
 
 type Checkpoint struct {
