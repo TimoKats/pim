@@ -26,6 +26,21 @@ type Run struct {
   Name string `yaml:"name"`
   Directory string `yaml:"directory"`
   Schedule string `yaml:"schedule"`
-  Command string `yaml:"command"` // NOTE: Parse this to be split on spaces!
+  Command string `yaml:"command"`
   Duration int `yaml:"duration"`
+  Catchup bool `yaml:"catchup"`
 }
+
+// checkpoints
+
+type RunCheckpoint struct {
+  Next time.Time
+  Name string
+  Catchup bool
+}
+
+type Checkpoint struct {
+  Updated time.Time
+  Runs []RunCheckpoint
+}
+
