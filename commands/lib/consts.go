@@ -43,11 +43,11 @@ const ABSTRACT = `
   setup a <<~/pim>> folder in your home directory. Here, you can write a <<process.yaml>>
   that contains your processes/commands and their schedule(s). Thereafter, you can start
   using Pim. For more information on how to setup your process.yaml, please visit the
-  documentation on GitHub.
-`
+  documentation on GitHub.`
 
 // somewhat anomalous, but it's a const and it's used so it belongs here...
 const HELPSTRING = `
+
   Usage:
   - pim <<command>>
 
@@ -64,8 +64,7 @@ const HELPSTRING = `
   - info/i: Outputs some information about this Pim installation.
   - help/h: Well...if you see this message you probably typed this...
   - version/v: Shows version of this Pim installation.
-  - license/l: Shows the license of this Pim installation.
-`
+  - license/l: Shows the license of this Pim installation.`
 
 // these are checked on startup
 var CONFIGDIR, CONFIGERR = DefaultConfigDir()
