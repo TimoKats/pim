@@ -1,10 +1,17 @@
 package lib
 
 import (
+  "github.com/go-co-op/gocron"
   "gopkg.in/yaml.v2"
+
+  "strconv"
+  "strings"
   "errors"
+  "time"
   "os"
 )
+
+// data.yaml
 
 func ReadDataYaml() (Database, error) {
   var database Database
@@ -21,20 +28,6 @@ func ReadDataYaml() (Database, error) {
     return database, createErr
   }
   return database, fileErr
-}
-
-func ReadProcessYaml() (Process, error) {
-  var process Process
-  yamlFile, fileErr := os.ReadFile(PROCESSPATH)
-  if fileErr == nil {
-    yamlErr := yaml.Unmarshal(yamlFile, &process)
-    if yamlErr == nil {
-      return process, nil
-    }
-    return process, yamlErr
-  }
-  Warn.Printf("No database of runs found. Please create one at: %s", PROCESSPATH)
-  return process, nil
 }
 
 func WriteDataYaml(filename string, database Database) error {
@@ -56,3 +49,101 @@ func TrimDatabase(database *Database, threshold int) {
   }
 }
 
+// process.yaml
+
+func ReadProcessYaml() (Process, error) {
+  var process Process
+  yamlFile, fileErr := os.ReadFile(PROCESSPATH)
+  if fileErr == nil {
+    yamlErr := yaml.Unmarshal(yamlFile, &process)
+    if yamlErr == nil {
+      return process, nil
+    }
+    return process, yamlErr
+  }
+  Warn.Printf("No database of runs found. Please create one at: %s", PROCESSPATH)
+  return process, nil
+}
+
+// lockfiles
+
+func InitLockFile() error {
+  currentPid := strconv.Itoa(os.Getpid())
+  lockErr := os.WriteFile(LOCKPATH, []byte(currentPid), 0644)
+  return lockErr
+}
+
+func LockExists() bool {
+  if _, lockErr := os.Stat(LOCKPATH); errors.Is(lockErr, os.ErrNotExist) {
+    return false
+  }
+  return true
+}
+
+func ReadLockFile() (int, error) {
+  bytePid, lockErr := os.ReadFile(LOCKPATH)
+  if lockErr != nil {
+    return 0, lockErr
+  }
+  strPid := string(bytePid)
+  intPid, convErr := strconv.Atoi(strPid)
+  if convErr != nil {
+    return 0, convErr
+  }
+  return intPid, nil
+}
+
+func RemoveDanglingLock() {
+  processCount := 0
+  test, _ := ExecuteCommand("ps -u")
+  for _, line := range strings.Split(test, "\n") {
+    if strings.Contains(line, "pim start") {
+      processCount += 1
+    }
+  }
+  if processCount < 2 && LockExists() {
+    removeErr := os.Remove(CHECKPOINTPATH)
+    if removeErr != nil {
+      Error.Println("Failed removing dangling lock file.")
+    }
+  }
+}
+
+// checkpoints
+
+func CreateCheckpoint(runs []Run, schedule *gocron.Scheduler) Checkpoint {
+  var checkpoints []RunCheckpoint
+  for index, job := range schedule.Jobs() {
+    checkpoints = append(
+      checkpoints,
+      RunCheckpoint{
+        Next: job.NextRun(),
+        Name: runs[index].Name,
+        Catchup: runs[index].Catchup,
+      })
+  }
+  return Checkpoint{Updated: time.Now(), Runs: checkpoints}
+}
+
+func WriteCheckpoint(runs []Run, schedule *gocron.Scheduler) error {
+  checkpoint := CreateCheckpoint(runs, schedule)
+  yamlData, yamlErr := yaml.Marshal(&checkpoint)
+  writeErr := os.WriteFile(CHECKPOINTPATH, yamlData, 0644)
+  if err := errors.Join(yamlErr, writeErr); err != nil {
+    return err
+  }
+  return nil
+}
+
+func ReadCheckpoint() (Checkpoint, error) {
+  var checkpoint Checkpoint
+  yamlFile, fileErr := os.ReadFile(CHECKPOINTPATH)
+  if fileErr == nil {
+    yamlErr := yaml.Unmarshal(yamlFile, &checkpoint)
+    if yamlErr == nil {
+      return checkpoint, nil
+    }
+    return checkpoint, yamlErr
+  }
+  return checkpoint, errors.New("No checkpoint found")
+}

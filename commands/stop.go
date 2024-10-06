@@ -20,7 +20,7 @@ func StopCommand() error {
   if readErr != nil {
     return readErr
   }
-  lockErr := lib.RemoveLockFile()
+  lockErr := os.Remove(lib.CHECKPOINTPATH)
   process, processErr := os.FindProcess(intPid)
   if err := errors.Join(lockErr, processErr); err != nil {
     return processErr
