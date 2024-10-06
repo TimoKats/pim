@@ -61,6 +61,7 @@ var LOCKPATH string = CONFIGDIR + "lockfile"
 var CHECKPOINTPATH string = CONFIGDIR + "checkpoint"
 var LOGPATH string = LOGDIR + DefaultLogPath()
 var COLUMNWIDTH int = 20
+var COMMANDS []string = []string{"ls", "run", "start", "stop", "clean", "stat"}
 
 // meta info
 var VERSION string = "v0.0.1"

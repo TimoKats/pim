@@ -19,7 +19,7 @@ var process = lib.Process{
       Name: "sleepy-command",
       Schedule: "@hourly",
       Command: "sleep 50",
-      Duration: 10,
+      Duration: 5,
     },
   },
 }
