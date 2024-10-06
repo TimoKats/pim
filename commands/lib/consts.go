@@ -37,7 +37,19 @@ func DefaultLogPath() string {
 }
 
 // somewhat anomalous, but it's a const and it's used so it belongs here...
-const HELPSTRING = `Usage: pim <<command>>
+const ABSTRACT = `
+  Abstract:
+  Pim is a process orchestration tool (i.e. it can shedule/call commands). To get started,
+  setup a <<~/pim>> folder in your home directory. Here, you can write a <<process.yaml>>
+  that contains your processes/commands and their schedule(s). Thereafter, you can start
+  using Pim. For more information on how to setup your process.yaml, please visit the
+  documentation on GitHub.
+`
+
+// somewhat anomalous, but it's a const and it's used so it belongs here...
+const HELPSTRING = `
+  Usage:
+  - pim <<command>>
 
   Commands:
   - run <<command-name>>: Runs a command by the name defined in your process YAML.
@@ -47,7 +59,13 @@ const HELPSTRING = `Usage: pim <<command>>
   - log <<optional:run-id>>: Show all logs, or a log of a specific run.
   - clean: Clean log files.
   - stat: Show runs/error rates of the commands defined in your YAML.
-  `
+
+  Flags:
+  - info/i: Outputs some information about this Pim installation.
+  - help/h: Well...if you see this message you probably typed this...
+  - version/v: Shows version of this Pim installation.
+  - license/l: Shows the license of this Pim installation.
+`
 
 // these are checked on startup
 var CONFIGDIR, CONFIGERR = DefaultConfigDir()
@@ -66,4 +84,4 @@ var COMMANDS []string = []string{"ls", "run", "start", "stop", "clean", "stat"}
 // meta info
 var VERSION string = "v0.0.1"
 var AUTHOR string = "Timo Kats"
-var LICENSE string = "TBD!"
+var LICENSE string = "The GNU General Public License v3.0"

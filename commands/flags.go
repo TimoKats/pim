@@ -24,6 +24,7 @@ func FlagCommand(flag string) error {
       lib.Info.Println(lib.VERSION)
       return nil
     case "help":
+      lib.Info.Println(lib.ABSTRACT)
       lib.Info.Println(lib.HELPSTRING)
       return nil
     case "info":
