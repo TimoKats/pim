@@ -36,7 +36,15 @@ func DefaultLogPath() string {
   return currentTime.Format("2006-01-02") + ".log"
 }
 
-// somewhat anomalous, but it's a const and it's used so it belongs here...
+const ASCIILOGO = `
+     _         | Description: Pim is a task orchestration tool.
+ ___|_|_____   | Version: %s
+| . | |     |  | Author: %s
+|  _|_|_|_|_|  | License: %s
+|_|            | Source code: github.com/TimoKats/pim
+
+`
+
 const ABSTRACT = `
   Abstract:
   Pim is a process orchestration tool (i.e. it can shedule/call commands). To get started,
@@ -45,9 +53,7 @@ const ABSTRACT = `
   using Pim. For more information on how to setup your process.yaml, please visit the
   documentation on GitHub.`
 
-// somewhat anomalous, but it's a const and it's used so it belongs here...
 const HELPSTRING = `
-
   Usage:
   - pim <<command>>
 

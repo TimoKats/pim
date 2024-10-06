@@ -9,14 +9,6 @@ import (
   "errors"
 )
 
-const asciiLogo = `
-     _         | Description: Pim is a task orchestration tool.
- ___|_|_____   | Version: %s
-| . | |     |  | Author: %s
-|  _|_|_|_|_|  | License: %s
-|_|            | Source code: github.com/TimoKats/pim
-
-`
 
 func FlagCommand(flag string) error {
   switch flag {
@@ -28,7 +20,7 @@ func FlagCommand(flag string) error {
       lib.Info.Println(lib.HELPSTRING)
       return nil
     case "info":
-      lib.Info.Printf(asciiLogo, lib.VERSION, lib.AUTHOR, lib.LICENSE)
+      lib.Info.Printf(lib.ASCIILOGO, lib.VERSION, lib.AUTHOR, lib.LICENSE)
       return nil
     case "license":
       lib.Info.Println(lib.LICENSE)

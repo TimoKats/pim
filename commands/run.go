@@ -23,6 +23,6 @@ func RunCommand(command []string, process lib.Process, database *lib.Database) e
       return nil
     }
   }
-  return errors.New("Name of selected run not in process yaml.")
+  return errors.New("'" + command[2] + "' not in process yaml.")
 }
 
