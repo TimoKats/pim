@@ -64,7 +64,6 @@ const HELPSTRING = `
   - ls: Lists all the commands and their characteristics defined in your process YAML.
   - log <<optional:run-id>>: Show all logs, or a log of a specific run.
   - clean: Clean log files.
-  - stat: Show runs/error rates of the commands defined in your YAML.
 
   Flags:
   - info/i: Outputs some information about this Pim installation.

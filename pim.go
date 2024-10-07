@@ -24,8 +24,6 @@ func parseCommand(command []string, process lib.Process, database *lib.Database)
       return pim.ListCommand(process)
     case "clean":
       return pim.CleanCommand(database)
-    case "stat":
-      return pim.StatCommand(process, database)
     // flags
     case "--version", "-v":
       return pim.FlagCommand("version")

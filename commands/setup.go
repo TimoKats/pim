@@ -28,6 +28,19 @@ func formatProcess(process *lib.Process) {
   }
 }
 
+func SetupStart() error {
+  lib.RemoveDanglingLock()
+  if lib.LockExists() {
+    return errors.New("Pim is already running! Run <<pim stop>> or check lockfile/ps.")
+  }
+  lib.InitFileLogging()
+  lockErr := lib.InitLockFile()
+  if lockErr != nil {
+    return lockErr
+  }
+  return nil
+}
+
 func SetupYamlFiles() (lib.Process, lib.Database, error) {
   database, readDataErr := lib.ReadDataYaml()
   process, readProcessErr := lib.ReadProcessYaml()

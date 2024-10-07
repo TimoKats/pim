@@ -53,3 +53,14 @@ func SelectCron(run Run, process Process, database *Database) (*gocron.Job, erro
       })
   }
 }
+
+func Heartbeat(process Process, database *Database) {
+  Warn.Println("Starting the heartbeat for scheduled tasks. Run this in background!")
+  for {
+    time.Sleep(10 * time.Second)
+    TrimDatabase(database, process.MaxLogs)
+    if checkpointErr := WriteCheckpoint(process.Runs, Schedule); checkpointErr != nil {
+      Error.Println(checkpointErr)
+    }
+  }
+}
