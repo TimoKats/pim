@@ -45,7 +45,7 @@ func formatCommand(command string) (string, []string)  {
 func executeTimedRun(run Run, showOutput bool, duration int) (string, int) {
   logName := generateLogName(5)
   log, _ := os.Create(logName)
-	defer log.Close()
+  defer log.Close()
   app, args := formatCommand(run.Command)
   ctx, _ := context.WithTimeout(context.Background(), time.Duration(duration) * time.Second) //nolint:govet
   cmd := exec.CommandContext(ctx, app, args...)

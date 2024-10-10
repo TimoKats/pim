@@ -9,10 +9,6 @@ import (
   "os"
 )
 
-// Used to end runs started by pim start (assuming you run it in the background). It
-// checks if the lock file exists and returns the error based on the PID in the lock
-// file. Note, it doesn't hurt to occasionally run ps -aux | grep pim to double check
-// if anything else is running.
 func StopCommand() error {
   if !lib.LockExists() {
     return errors.New("No process to end.")
@@ -31,7 +27,6 @@ func StopCommand() error {
   return killErr
 }
 
-// Lists the processes in the current process.yaml.
 func ListCommand(process lib.Process) error {
   for _, run := range process.Runs {
     name := lib.ResponsiveWhitespace(run.Name)
@@ -42,7 +37,6 @@ func ListCommand(process lib.Process) error {
   return nil
 }
 
-// Run a command from process.yaml based on its name (which is supplied as an argument)
 func RunCommand(command []string, process lib.Process, database *lib.Database) error {
   var selectedRun string
   if len(command) < 3 {
@@ -59,9 +53,6 @@ func RunCommand(command []string, process lib.Process, database *lib.Database) e
   return errors.New("'" + command[2] + "' not in process yaml.")
 }
 
-// Shows logs of previous runs. If pim log is run, then a summary/table is shown of
-// all previous runs (also shows run-id). if pim log <run-id> is run, then a more
-// elaborate overview is shown with ViewLog.
 func LogCommand(command []string, database *lib.Database) error {
   if len(command) < 3 {
     return lib.ViewLogs(database)
@@ -69,10 +60,6 @@ func LogCommand(command []string, database *lib.Database) error {
   return lib.ViewLog(database, command[2])
 }
 
-// This function uses an external cron module that runs different jobs concurrently.
-// Update: I create a lock file that contains the current pid (of the start command)
-// that is meant to prevent multiple start processes running at the same time and kill
-// the process without calling ps -aux > kill ...
 func StartCommand(process lib.Process, database *lib.Database) error {
   if setupErr := SetupStart(); setupErr != nil {
     return setupErr
@@ -92,10 +79,6 @@ func StartCommand(process lib.Process, database *lib.Database) error {
   return nil
 }
 
-// Contains functions related to cleaning/trimming the files that pim creates. First, the
-// the function TrimDatabase is run every heartbeat/run and it's behavior is determined
-// by the set_max_logs setting in your process.yaml. Next, the CleanDatabase function
-// deletes all the redundant log files and previous runs in data.yaml.
 func CleanCommand(database *lib.Database) error {
   database.Logs = nil
   writeErr := lib.WriteDataYaml(lib.DATAPATH, *database)
@@ -107,4 +90,20 @@ func CleanCommand(database *lib.Database) error {
   return makeErr
 }
 
-
+func TestCommand(process lib.Process, database *lib.Database) error {
+  for _, run := range process.Runs {
+    run := run
+    cronJob, _ := lib.TestCron(run, process, database)
+    if cronJob != nil {
+      cronJob.Tag(run.Name)
+    }
+  }
+  lib.Schedule.StartAsync()
+  for _, run := range process.Runs {
+    cronJob, cronErr := lib.Schedule.FindJobsByTag(run.Name)
+    if cronErr == nil && cronJob != nil {
+      lib.Info.Println(cronJob[0].NextRun())
+    }
+  }
+  return nil
+}
