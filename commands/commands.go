@@ -5,7 +5,9 @@ package commands
 import (
   lib "github.com/TimoKats/pim/commands/lib"
 
+  "strings"
   "errors"
+  "time"
   "os"
 )
 
@@ -91,10 +93,13 @@ func CleanCommand(database *lib.Database) error {
 }
 
 func TestCommand(process lib.Process, database *lib.Database) error {
+  var nextRun string
+  var runsCatchup bool
+  lib.Info.Printf("%s | %s | %s", lib.ResponsiveWhitespace("Name"), lib.ResponsiveWhitespace("Next scheduled run"), "Runs on startup")
   for _, run := range process.Runs {
     run := run
-    cronJob, _ := lib.TestCron(run, process, database)
-    if cronJob != nil {
+    cronJob, cronErr := lib.DummyCron(run, process, database)
+    if cronJob != nil && cronErr == nil {
       cronJob.Tag(run.Name)
     }
   }
@@ -102,8 +107,14 @@ func TestCommand(process lib.Process, database *lib.Database) error {
   for _, run := range process.Runs {
     cronJob, cronErr := lib.Schedule.FindJobsByTag(run.Name)
     if cronErr == nil && cronJob != nil {
-      lib.Info.Println(cronJob[0].NextRun())
+      nextRun = lib.ResponsiveWhitespace(cronJob[0].NextRun().Format(time.RFC1123))
+      runsCatchup = lib.RunsCatchup(run.Name)
+    } else {
+      nextRun = lib.ResponsiveWhitespace("No cron schedule.")
+      runsCatchup = strings.HasPrefix(run.Schedule, "@start")
     }
+    runName := lib.ResponsiveWhitespace(run.Name)
+    lib.Info.Printf("%s | %s | %v", runName, nextRun, runsCatchup)
   }
   return nil
 }

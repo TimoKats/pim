@@ -25,6 +25,20 @@ func Catchup() {
   }
 }
 
+
+func RunsCatchup(runName string) bool {
+  checkpoint, checkpointErr := ReadCheckpoint()
+  if checkpointErr != nil {
+    return false
+  }
+  for _, run := range checkpoint.Runs {
+    if run.Next.Before(time.Now()) && run.Catchup && run.Name == runName {
+      return true
+    }
+  }
+  return false
+}
+
 func RunOnStart(run Run, process Process, database *Database) {
   delay := strings.Split(run.Schedule, "+")
   if len(delay) > 1 {
@@ -54,7 +68,7 @@ func SelectCron(run Run, process Process, database *Database) (*gocron.Job, erro
   }
 }
 
-func TestCron(run Run, process Process, database *Database) (*gocron.Job, error) {
+func DummyCron(run Run, process Process, database *Database) (*gocron.Job, error) {
   switch {
     case strings.HasPrefix(run.Schedule, "@times;"):
       return Schedule.Every(1).Day().At(run.Schedule[7:]).Do( func () {
