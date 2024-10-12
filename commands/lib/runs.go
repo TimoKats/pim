@@ -1,3 +1,7 @@
+// Module that executes the commands defined in process.yaml. Also has functions that write
+// to temporary log files for timed runs. If something breaks in pim, it typically breaks
+// here... :)
+
 package lib
 
 import (

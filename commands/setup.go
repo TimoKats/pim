@@ -1,7 +1,7 @@
-// Contains commands that run every startup automatically. In short, the data file and
-// yaml files are loaded (sometimes created) and parsed into objects through the
+// Commands that run every startup automatically. In short, the data file and yaml files
+// are loaded (or created; if they don't exist yet) and parsed into objects through the
 // SetupYamlFiles function. Next, certain attributes are cleaned and checked by helper
-// functions. Also, there the CheckStartupErrors is run every startup to check if all
+// functions. Finally, the CheckStartupErrors is called every startup to check if all
 // const values that are needed can be set.
 
 package commands

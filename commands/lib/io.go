@@ -1,3 +1,6 @@
+// All reading/writing operations to the filesystem are in this submodule. The categories
+// of functions are: data.yaml, process.yaml, checkpoints, lockfiles.
+
 package lib
 
 import (

@@ -1,5 +1,7 @@
-// Obviously not a command, but if user submits a flag then this module is used to parse
-// it. This module is there mainly to keep main package clean and adhere to my design.
+// Flags can be called from main package using a - or -- prefix. Currently, the Flags
+// only output constant information (like license, version, etc) to standard output. The
+// only reason they are in their own submodule is because it keeps other modules cleaner
+// :)
 
 package commands
 
@@ -8,7 +10,6 @@ import (
 
   "errors"
 )
-
 
 func FlagCommand(flag string) error {
   switch flag {

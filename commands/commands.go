@@ -1,4 +1,7 @@
-// contains all the functions that can be invoked from the main package.
+// Contains all the functions that can be invoked from the main package. Currently, that
+// is: stop, list, run, start, and log. Hence, for each command there is a function. They
+// use helper functions from the lib package. Sometimes, (e.g. in start) they also use
+// functions from the setup submodule in this module.
 
 package commands
 

@@ -1,3 +1,11 @@
+// Contains the main control flow of the program. First, it's checked if there are any
+// errors on startup. Next, it's checked if the correct number of parameters is provided.
+// If this checks out also, the yaml files (process and database) are loaded. Also here,
+// check for errors and return if need be.
+//
+// Finally, given the loaded yaml files and command parameters, the correct function is
+// called in a case switch statement. If any errors occur, they are returned here.
+
 package main
 
 import (
@@ -57,3 +65,4 @@ func main() {
     lib.Error.Println(parseErr)
   }
 }
+
