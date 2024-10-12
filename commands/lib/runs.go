@@ -1,3 +1,7 @@
+// Module that executes the commands defined in process.yaml. Also has functions that write
+// to temporary log files for timed runs. If something breaks in pim, it typically breaks
+// here... :)
+
 package lib
 
 import (
@@ -15,7 +19,7 @@ func generateLogName(length int) string {
   for i := range id {
     id[i] = IDCHARSET[SeededRand.Intn(len(IDCHARSET))]
   }
-  return CONFIGDIR + "/" + string(id) + ".log"
+  return LOGDIR + "/" + string(id) + ".log"
 }
 
 func getCommandLogs(filename string) string {
@@ -45,7 +49,7 @@ func formatCommand(command string) (string, []string)  {
 func executeTimedRun(run Run, showOutput bool, duration int) (string, int) {
   logName := generateLogName(5)
   log, _ := os.Create(logName)
-	defer log.Close()
+  defer log.Close()
   app, args := formatCommand(run.Command)
   ctx, _ := context.WithTimeout(context.Background(), time.Duration(duration) * time.Second) //nolint:govet
   cmd := exec.CommandContext(ctx, app, args...)

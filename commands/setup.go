@@ -1,7 +1,7 @@
-// Contains commands that run every startup automatically. In short, the data file and
-// yaml files are loaded (sometimes created) and parsed into objects through the
+// Commands that run every startup automatically. In short, the data file and yaml files
+// are loaded (or created; if they don't exist yet) and parsed into objects through the
 // SetupYamlFiles function. Next, certain attributes are cleaned and checked by helper
-// functions. Also, there the CheckStartupErrors is run every startup to check if all
+// functions. Finally, the CheckStartupErrors is called every startup to check if all
 // const values that are needed can be set.
 
 package commands
@@ -26,6 +26,19 @@ func formatProcess(process *lib.Process) {
     processName = process.Runs[i].Name
     process.Runs[i].Name = formatProcessName(processName)
   }
+}
+
+func SetupStart() error {
+  lib.RemoveDanglingLock()
+  if lib.LockExists() {
+    return errors.New("Pim is already running! Run <<pim stop>> or check lockfile/ps.")
+  }
+  lib.InitFileLogging()
+  lockErr := lib.InitLockFile()
+  if lockErr != nil {
+    return lockErr
+  }
+  return nil
 }
 
 func SetupYamlFiles() (lib.Process, lib.Database, error) {

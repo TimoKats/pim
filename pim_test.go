@@ -1,3 +1,7 @@
+// No tedious unit testing. Just run some of the main commands and see if anything breaks.
+// Note, I want to add start here but I don't have a file system in GH actions for the
+// lock files? So that fix is still coming.
+
 package main
 
 import (
@@ -19,14 +23,18 @@ var process = lib.Process{
       Name: "sleepy-command",
       Schedule: "@hourly",
       Command: "sleep 50",
-      Duration: 10,
+      Duration: 5,
+    },
+    lib.Run{
+      Name: "sleepy-command",
+      Schedule: "@start+10",
+      Command: "echo bye world",
     },
   },
 }
 
-
 func TestLs(t *testing.T) {
-  cmdErr := pim.ListCommand(process)
+  cmdErr := pim.ListCommand(process, &database)
   if cmdErr != nil {
     t.Errorf("Error in ls command: %v", cmdErr)
   }
@@ -56,9 +64,3 @@ func TestLog(t *testing.T) {
   }
 }
 
-func TestStat(t *testing.T) {
-  cmdErr := pim.StatCommand(process, &database)
-  if cmdErr != nil {
-    t.Errorf("Error in info command: %v", cmdErr)
-  }
-}

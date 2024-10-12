@@ -1,3 +1,11 @@
+// Contains the main control flow of the program. First, it's checked if there are any
+// errors on startup. Next, it's checked if the correct number of parameters is provided.
+// If this checks out also, the yaml files (process and database) are loaded. Also here,
+// check for errors and return if need be.
+//
+// Finally, given the loaded yaml files and command parameters, the correct function is
+// called in a case switch statement. If any errors occur, they are returned here.
+
 package main
 
 import (
@@ -8,25 +16,32 @@ import (
   "os"
 )
 
-
-func parseCommand(command []string, process lib.Process, database *lib.Database) error  {
+func parseCommand(command []string, process lib.Process, database *lib.Database) error {
   switch command[1] {
-    case "run":
+    // commands
+    case "run", "r":
       return pim.RunCommand(command, process, database)
     case "start":
       return pim.StartCommand(process, database)
     case "stop":
       return pim.StopCommand()
-    case "log":
+    case "log", "logs":
       return pim.LogCommand(command, database)
     case "ls":
-      return pim.ListCommand(process)
+      return pim.ListCommand(process, database)
     case "clean":
       return pim.CleanCommand(database)
-    case "stat":
-      return pim.StatCommand(process, database)
+    // flags
+    case "--version", "-v":
+      return pim.FlagCommand("version")
+    case "--help", "-h":
+      return pim.FlagCommand("help")
+    case "--info", "-i":
+      return pim.FlagCommand("info")
+    case "--license", "-l":
+      return pim.FlagCommand("license")
     default:
-      return errors.New("Command not found.")
+      return errors.New("Command '" + command[1] + "' not found.")
     }
 }
 
@@ -50,3 +65,4 @@ func main() {
     lib.Error.Println(parseErr)
   }
 }
+

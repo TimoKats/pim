@@ -1,14 +1,24 @@
+// Datatypes used in pim. Relates to yaml files: process.yaml, data.yaml, checkpoint.
+//
+// A semantic explanation of how the datatypes are used:
+// A <process> consists of <run>s. A <run> creates a <log> that we put in the <database>.
+// Checkpoints are created on heartbeats and are not related to the other data types.
+
 package lib
 
 import (
   "time"
 )
 
+// process
+
 type Process struct {
   Runs []Run `yaml:"process"`
   OnlyStoreErrors bool `yaml:"only_store_errors"`
   MaxLogs int `yaml:"max_logs"`
 }
+
+// storage
 
 type Database struct {
   Logs []Log
