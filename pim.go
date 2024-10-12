@@ -8,7 +8,7 @@ import (
   "os"
 )
 
-func parseCommand(command []string, process lib.Process, database *lib.Database) error  {
+func parseCommand(command []string, process lib.Process, database *lib.Database) error {
   switch command[1] {
     // commands
     case "run", "r":
@@ -20,11 +20,9 @@ func parseCommand(command []string, process lib.Process, database *lib.Database)
     case "log", "logs":
       return pim.LogCommand(command, database)
     case "ls":
-      return pim.ListCommand(process)
+      return pim.ListCommand(process, database)
     case "clean":
       return pim.CleanCommand(database)
-    case "test":
-      return pim.TestCommand(process, database)
     // flags
     case "--version", "-v":
       return pim.FlagCommand("version")

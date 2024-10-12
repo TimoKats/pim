@@ -19,17 +19,6 @@ var Yellow = "\033[33m"
 var Blue = "\033[34m"
 var Magenta = "\033[35m"
 
-func ResponsiveWhitespace(text string) string {
-  if len(text) > COLUMNWIDTH {
-    text = text[:COLUMNWIDTH]
-  }
-  spaces := COLUMNWIDTH - len(text)
-  for i := 0; i < spaces; i++ {
-    text += " "
-  }
-  return text
-}
-
 func InitFileLogging() {
   logFile, err := os.OpenFile(LOGPATH, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
   if err != nil {

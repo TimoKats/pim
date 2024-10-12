@@ -102,8 +102,9 @@ func RemoveDanglingLock() {
     }
   }
   if processCount < 2 && LockExists() {
-    removeErr := os.Remove(CHECKPOINTPATH)
+    removeErr := os.Remove(LOCKPATH)
     if removeErr != nil {
+      Error.Println(removeErr)
       Error.Println("Failed removing dangling lock file.")
     }
   }

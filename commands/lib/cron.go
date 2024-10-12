@@ -68,22 +68,6 @@ func SelectCron(run Run, process Process, database *Database) (*gocron.Job, erro
   }
 }
 
-func DummyCron(run Run, process Process, database *Database) (*gocron.Job, error) {
-  switch {
-    case strings.HasPrefix(run.Schedule, "@times;"):
-      return Schedule.Every(1).Day().At(run.Schedule[7:]).Do( func () {
-        Info.Println("This is a run to test the schedule.")
-      })
-    case strings.HasPrefix(run.Schedule, "@start"):
-      return nil, nil
-    default:
-      return Schedule.Cron(run.Schedule).Do( func () {
-        Info.Printf("Now running '%s'", run.Name)
-        RunAndStore(run, database, process, false)
-      })
-  }
-}
-
 func Heartbeat(process Process, database *Database) {
   Warn.Println("Starting the heartbeat for scheduled tasks. Run this in background!")
   for {
@@ -94,3 +78,33 @@ func Heartbeat(process Process, database *Database) {
     }
   }
 }
+
+func dummyCron(dummySchedule *gocron.Scheduler, run Run, process Process, database *Database) (*gocron.Job, error) {
+  switch {
+    case strings.HasPrefix(run.Schedule, "@times;"):
+      return dummySchedule.Every(1).Day().At(run.Schedule[7:]).Do( func () {
+        Info.Println("This is a run to test the schedule.")
+      })
+    case strings.HasPrefix(run.Schedule, "@start"):
+      return nil, nil
+    default:
+      return dummySchedule.Cron(run.Schedule).Do( func () {
+        Info.Printf("Now running '%s'", run.Name)
+        RunAndStore(run, database, process, false)
+      })
+  }
+}
+
+func CreateDummySchedule(process Process, database *Database) *gocron.Scheduler {
+  dummySchedule := gocron.NewScheduler(time.Local)
+  for _, run := range process.Runs {
+    run := run
+    cronJob, cronErr := dummyCron(dummySchedule, run, process, database)
+    if cronJob != nil && cronErr == nil {
+      cronJob.Tag(run.Name)
+    }
+  }
+  dummySchedule.StartAsync()
+  return dummySchedule
+}
+

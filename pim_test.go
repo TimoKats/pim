@@ -26,7 +26,7 @@ var process = lib.Process{
 
 
 func TestLs(t *testing.T) {
-  cmdErr := pim.ListCommand(process)
+  cmdErr := pim.ListCommand(process, &database)
   if cmdErr != nil {
     t.Errorf("Error in ls command: %v", cmdErr)
   }
