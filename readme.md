@@ -1,4 +1,10 @@
 ![logo](https://github.com/TimoKats/pim/blob/main/.github/logo.png)
+
+![example workflow](https://github.com/timokats/pim/actions/workflows/test.yaml/badge.svg)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-red.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![GitHub tag](https://img.shields.io/github/tag/TimoKats/pim?include_prereleases=&sort=semver&color=cyan)](https://github.com/TimoKats/pim/releases/)
+[![stars - pim](https://img.shields.io/github/stars/TimoKats/pim?style=social)](https://github.com/TimoKats/pim)
+[![forks - pim](https://img.shields.io/github/forks/TimoKats/pim?style=social)](https://github.com/TimoKats/pim) 
 ---
 Pim (which stands for Process IMprover) is a task orchestrator that adds functionality to cron. And yes, it's named after a certain text editor I used to write the tool. It's written in Go and tested on Linux, although most funcionalities should also work on Windows.
 
