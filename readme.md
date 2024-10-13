@@ -6,10 +6,12 @@
 [![stars - pim](https://img.shields.io/github/stars/TimoKats/pim?style=social)](https://github.com/TimoKats/pim)
 [![forks - pim](https://img.shields.io/github/forks/TimoKats/pim?style=social)](https://github.com/TimoKats/pim) 
 
-Pim (which stands for Process IMprover) is a task orchestrator that adds functionality to cron. And yes, it's named after a certain text editor I used to write the tool. It's written in Go and tested on Linux, although most funcionalities should also work on Windows.
+Pim (which stands for Process IMprover) is a task orchestrator meant for personal computers. It adds scheduling features like: running on start (with optional delay), doing a catchup run if the computer was turned off last time it was scheduled, setting max durations for commands, easy access to logs, and running commands directly based on their set name (aliases). The goal of pim is to be an orchestrator that takes all scenarios into account, so ideas are always welcome :)
+
+The tool written in Go and tested on Linux, although most funcionalities should also work on Windows...And yes, it's named after a certain text editor I used to write the tool. 
 
 ## Getting started
-You can install pim with `go install github.com/TimoKats/pim` (assuming you have go installed and GOPATH set correctly). Currently, pim is not available in any package repositories. Next, you can setup your tasks in `~/.pim/process.yaml`.
+You can install pim with `go install github.com/TimoKats/pim@latest` (assuming you have go installed and GOPATH set correctly). Currently, pim is not available in any package repositories. Next, you can setup your schedule in `~/.pim/process.yaml`.
 
 ## Usage
 
