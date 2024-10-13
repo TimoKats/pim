@@ -42,7 +42,7 @@ process:
 ```
 
 ### Commands
-Pim is used from the command line. This is an overview of the commands/flags you can use. Note, the format is `pim <<command>>` and `pim --<<flag>>`. The gif below shows an example where I list runs, see the recent logs, and run something on command.
+Pim is used from the command line. This is an overview of the commands/flags you can use. Note, the format is `pim <<command>>` and `pim --<<flag>>`. The gif below shows some pim commands being used in practice.
 
 Commands:
 - run <\<command-name\>>: Runs a command by the name defined in your process YAML.
