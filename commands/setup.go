@@ -29,11 +29,11 @@ func formatProcess(process *lib.Process) {
 }
 
 func SetupStart() error {
+  lib.InitFileLogging()
   lib.RemoveDanglingLock()
   if lib.LockExists() {
     return errors.New("Pim is already running! Run <<pim stop>> or check lockfile/ps.")
   }
-  lib.InitFileLogging()
   lockErr := lib.InitLockFile()
   if lockErr != nil {
     return lockErr
