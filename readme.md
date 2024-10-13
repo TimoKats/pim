@@ -46,7 +46,7 @@ Pim is used from the command line. This is an overview of the commands/flags you
 
 Commands:
 - run <\<command-name\>>: Runs a command by the name defined in your process YAML.
-- start: Starts the cron schedule defined in your process YAML.
+- start: Starts the cron schedule defined in your process YAML. NOTE: Logs are sent to log files in ~/.pim/logs/ and not to standard output when using start.
 - stop: Stops the cron schedule started by running: pim start.
 - ls: Lists all the commands and their characteristics defined in your process YAML.
 - log <\<optional:run-id\>>: Show all logs, or a log of a specific run.
@@ -62,7 +62,7 @@ Flags:
 
 
 ### Running in background
-If you want to run `pim start` automatically you have a couple of options. First, you can add `pim start &` to your .bashrc file. This will start a pim session whenever you open your terminal (note, it prevents running multiple times if you have multiple windows). Next, you can also use something like crontab to start on reboot. Finally, it's also possible to just run `pim start` and `pim stop` whenever you want it to be on. E.g. in servers that never shut down.
+If you want to run `pim start` automatically you have a couple of options. First, you can add `(pim start &)` to your .bashrc file. This will start a pim session whenever you open your terminal (note, it prevents running multiple times if you have multiple windows). Next, you can also use something like crontab to start on reboot. Finally, it's also possible to just run `pim start` and `pim stop` whenever you want it to be on. E.g. in servers that never shut down.
 
 > For Windows users: Perhaps you can run pim as a service, but there's no way for me to test that given I don't have a Windows machine.
 
