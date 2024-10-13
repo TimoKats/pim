@@ -14,7 +14,7 @@ You can install pim with `go install github.com/TimoKats/pim` (assuming you have
 ## Usage
 
 ### process.yaml
-All your tasks can be defined in your process file, which sits in `~/.pim/process.yaml`. Here you can find a template of this file with some explanation of the possible attributes. Note, new ideas are welcome!
+All your tasks can be defined in your process file, which sits in `~/.pim/process.yaml`. Here you can find a template of this file with some explanation of the possible attributes. In summary, there are some overall optional settings, and there is a list of "runs". Here, each run represents a command you want to schedule.
 
 ```yaml
 max_logs: 50 # optional: max logs pim will store. Trims based on FIFO logic. Defaults to none.
@@ -38,3 +38,30 @@ process:
     schedule: '*/5 * * * *' # You can also have some good-ol cron strings :)
     command: ./change-wallpaper.sh
 ```
+
+### Commands
+Pim is used from the command line. This is an overview of the commands/flags you can use. Note, the format is `pim <<command>>` and `pim --<<flag>>`. The gif below shows an example where I list runs, see the recent logs, and run something on command.
+
+Commands:
+- run <\<command-name\>>: Runs a command by the name defined in your process YAML.
+- start: Starts the cron schedule defined in your process YAML.
+- stop: Stops the cron schedule started by running: pim start.
+- ls: Lists all the commands and their characteristics defined in your process YAML.
+- log <\<optional:run-id\>>: Show all logs, or a log of a specific run.
+- clean: Clean log files.
+
+Flags:
+- info/i: Outputs some information about this Pim installation.
+- help/h: Well...if you see this message you probably typed this...
+- version/v: Shows version of this Pim installation.
+- license/l: Shows the license of this Pim installation.
+
+![pim-example](https://github.com/user-attachments/assets/026bff8c-94f5-41b9-b1ad-53da4623e387)
+
+
+### Running in background
+If you want to run `pim start` automatically you have a couple of options. First, you can add `pim start &` to your .bashrc file. This will start a pim session whenever you open your terminal (note, it prevents running multiple times if you have multiple windows). Next, you can also use something like crontab to start on reboot. Finally, it's also possible to just run `pim start` and `pim stop` whenever you want it to be on. E.g. in servers that never shut down.
+
+> For Windows users: Perhaps you can run pim as a service, but there's no way for me to test that given I don't have a Windows machine.
+
+
