@@ -6,17 +6,15 @@
 [![stars - pim](https://img.shields.io/github/stars/TimoKats/pim?style=social)](https://github.com/TimoKats/pim)
 [![forks - pim](https://img.shields.io/github/forks/TimoKats/pim?style=social)](https://github.com/TimoKats/pim) 
 
-Pim (which stands for Process IMprover) is a task orchestrator meant for personal computers. It has scheduling features like:
+Pim (which stands for Process IMprover) is a task orchestrator meant for personal computers. Besides regular cron scheduling, it adds additional features like:
 - Running on start (with optional delay).
 - Running commands in specific directories.
-- Catchup runs (if computer was turned off during scheduled run).
-- Setting max durations for commands.
-- Access to logs.
 - Running commands directly based on their set name (aliases).
+- Doing catchup runs (if computer was turned off during scheduled run).
 - Scheduling multiple commands at the same time.
-- etc...
+- Access to logs.
 
-Moreover, the goal of pim is to be an orchestrator that takes all scenarios into account, so ideas are always welcome :)
+Moreover, the goal of pim is to be an orchestrator that takes all scenarios into account, so ideas are always welcome.
 
 ## Getting started
 You can install pim with `go install github.com/TimoKats/pim@latest` (assuming you have go installed and GOPATH set correctly). Currently, pim is not available in any package repositories. Next, you can setup your schedule in `~/.pim/process.yaml`.
@@ -70,7 +68,7 @@ Flags:
 
 
 ### Running in background
-If you want to run `pim start` automatically you have a couple of options. First, you can add `(pim start &)` to your .bashrc file. This will start a pim session whenever you open your terminal (note, it prevents running multiple times if you have multiple windows). Next, you can also use something like crontab to start on reboot. Finally, it's also possible to just run `pim start` and `pim stop` whenever you want it to be on. E.g. in servers that never shut down.
+If you want to run `pim start` automatically you have a couple of options. First, you can add `(pim start &)` to your .bashrc file. This will start a pim session whenever you open your terminal (note, it prevents running multiple times if you have multiple windows). Next, you can also use something like crontab to start on reboot. A third option would be to run pim through a systemd file. Finally, it's also possible to just run `pim start` and `pim stop` whenever you want it to be on. E.g. in servers that never shut down.
 
 > For Windows users: Perhaps you can run pim as a service, but there's no way for me to test that given I don't have a Windows machine.
 
