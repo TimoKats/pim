@@ -6,9 +6,17 @@
 [![stars - pim](https://img.shields.io/github/stars/TimoKats/pim?style=social)](https://github.com/TimoKats/pim)
 [![forks - pim](https://img.shields.io/github/forks/TimoKats/pim?style=social)](https://github.com/TimoKats/pim) 
 
-Pim (which stands for Process IMprover) is a task orchestrator meant for personal computers. It adds scheduling features like: running on start (with optional delay), doing a catchup runs, setting max durations, easy access to logs, and running commands directly based on their set name (aliases). Moreover, the goal of pim is to be an orchestrator that takes all scenarios into account, so ideas are always welcome :)
+Pim (which stands for Process IMprover) is a task orchestrator meant for personal computers. It has scheduling features like:
+- Running on start (with optional delay).
+- Running commands in specific directories.
+- Catchup runs (if computer was turned off during scheduled run).
+- Setting max durations for commands.
+- Access to logs.
+- Running commands directly based on their set name (aliases).
+- Scheduling multiple commands at the same time.
+- etc...
 
-The tool written in Go and tested on Linux, although most funcionalities should also work on Windows...And yes, it's named after a certain text editor I used to write the tool. 
+Moreover, the goal of pim is to be an orchestrator that takes all scenarios into account, so ideas are always welcome :)
 
 ## Getting started
 You can install pim with `go install github.com/TimoKats/pim@latest` (assuming you have go installed and GOPATH set correctly). Currently, pim is not available in any package repositories. Next, you can setup your schedule in `~/.pim/process.yaml`.
