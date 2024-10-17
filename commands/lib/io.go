@@ -131,7 +131,6 @@ func CreateCheckpoint(schedule *gocron.Scheduler, mapping map[*gocron.Job]Run) C
 
 func WriteCheckpoint(schedule *gocron.Scheduler, mapping map[*gocron.Job]Run) error {
   checkpoint := CreateCheckpoint(schedule, mapping)
-  Info.Printf("%v", checkpoint)
   yamlData, yamlErr := yaml.Marshal(&checkpoint)
   writeErr := os.WriteFile(CHECKPOINTPATH, yamlData, 0644)
   if err := errors.Join(yamlErr, writeErr); err != nil {
