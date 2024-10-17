@@ -115,22 +115,23 @@ func RemoveDanglingLock() {
 
 // checkpoints
 
-func CreateCheckpoint(runs []Run, schedule *gocron.Scheduler) Checkpoint {
+func CreateCheckpoint(schedule *gocron.Scheduler, mapping map[*gocron.Job]Run) Checkpoint {
   var checkpoints []RunCheckpoint
-  for index, job := range schedule.Jobs() {
+  for _, job := range schedule.Jobs() {
     checkpoints = append(
       checkpoints,
       RunCheckpoint{
         Next: job.NextRun(),
-        Name: runs[index].Name,
-        Catchup: runs[index].Catchup,
+        Name: mapping[job].Name,
+        Catchup: mapping[job].Catchup,
       })
   }
   return Checkpoint{Updated: time.Now(), Runs: checkpoints}
 }
 
-func WriteCheckpoint(runs []Run, schedule *gocron.Scheduler) error {
-  checkpoint := CreateCheckpoint(runs, schedule)
+func WriteCheckpoint(schedule *gocron.Scheduler, mapping map[*gocron.Job]Run) error {
+  checkpoint := CreateCheckpoint(schedule, mapping)
+  Info.Printf("%v", checkpoint)
   yamlData, yamlErr := yaml.Marshal(&checkpoint)
   writeErr := os.WriteFile(CHECKPOINTPATH, yamlData, 0644)
   if err := errors.Join(yamlErr, writeErr); err != nil {

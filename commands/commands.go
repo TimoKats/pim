@@ -79,6 +79,7 @@ func StartCommand(process lib.Process, database *lib.Database) error {
       lib.Error.Printf("Error in '%s'. %v.", run.Name, cronErr)
     } else if cronJob != nil {
       cronJob.Tag(run.Name)
+      lib.RunJobMapping[cronJob] = run
     }
   }
   lib.Schedule.StartAsync()
