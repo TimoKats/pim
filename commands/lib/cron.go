@@ -18,6 +18,7 @@ import (
 )
 
 var Schedule *gocron.Scheduler = gocron.NewScheduler(time.Local)
+var RunJobMapping = make(map[*gocron.Job]Run)
 
 func Catchup() {
   checkpoint, checkpointErr := ReadCheckpoint()
@@ -81,7 +82,7 @@ func Heartbeat(process Process, database *Database) {
   for {
     time.Sleep(10 * time.Second)
     TrimDatabase(database, process.MaxLogs)
-    if checkpointErr := WriteCheckpoint(process.Runs, Schedule); checkpointErr != nil {
+    if checkpointErr := WriteCheckpoint(Schedule, RunJobMapping); checkpointErr != nil {
       Error.Println(checkpointErr)
     }
   }
