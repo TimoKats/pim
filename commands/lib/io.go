@@ -96,7 +96,7 @@ func ReadLockFile() (int, error) {
   return intPid, nil
 }
 
-func RemoveDanglingLock() {
+func CountPimProcesses() int {
   processCount := 0
   test, _ := ExecuteCommand("ps -u")
   for _, line := range strings.Split(test, "\n") {
@@ -104,6 +104,11 @@ func RemoveDanglingLock() {
       processCount += 1
     }
   }
+  return processCount
+}
+
+func RemoveDanglingLock() {
+  processCount := CountPimProcesses()
   if processCount < 2 && LockExists() {
     removeErr := os.Remove(LOCKPATH)
     if removeErr != nil {

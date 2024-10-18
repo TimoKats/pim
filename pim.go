@@ -25,6 +25,8 @@ func parseCommand(command []string, process lib.Process, database *lib.Database)
       return pim.StartCommand(process, database)
     case "stop":
       return pim.StopCommand()
+    case "status":
+      return pim.StatusCommand()
     case "log", "logs":
       return pim.LogCommand(command, database)
     case "ls":
