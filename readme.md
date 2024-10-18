@@ -64,7 +64,7 @@ Flags:
 - version/v: Shows version of this Pim installation.
 - license/l: Shows the license of this Pim installation.
 
-![pim-example](https://github.com/user-attachments/assets/026bff8c-94f5-41b9-b1ad-53da4623e387)
+![pim-example-optmized](https://github.com/user-attachments/assets/85d69829-739c-49e1-a75e-63c2ff3d2324)
 
 
 ### Running in background
