@@ -68,6 +68,18 @@ func LogCommand(command []string, database *lib.Database) error {
   return lib.ViewLog(database, command[2])
 }
 
+func StatusCommand() error {
+  pid, lockErr := lib.ReadLockFile()
+  processCount := lib.CountPimProcesses()
+  if processCount > 0 {
+    lib.Info.Printf("Pim is currently running at: %d", pid)
+    return lockErr
+  } else {
+    lib.Info.Println("No pim process running.")
+    return nil
+  }
+}
+
 func StartCommand(process lib.Process, database *lib.Database) error {
   if setupErr := SetupStart(); setupErr != nil {
     return setupErr
