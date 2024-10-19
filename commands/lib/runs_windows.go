@@ -54,9 +54,9 @@ func executeTimedRun(run Run, showOutput bool, duration int) (string, int) {
   cmd.SysProcAttr = &syscall.SysProcAttr{CreationFlags: syscall.CREATE_NEW_PROCESS_GROUP}
   cmd.Dir = run.Directory
   cmd.Env = os.Environ()
-	cmd.Stdout = log
+  cmd.Stdout = log
   if runErr := cmd.Run(); runErr != nil {
-    err = cmd.Process.Signal(syscall.SIGTERM) //nolint:errcheck
+    cmd.Process.Signal(syscall.SIGTERM) //nolint:errcheck
     return getCommandLogs(logName), 0
   }
   return "not terminated", 1
