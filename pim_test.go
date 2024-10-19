@@ -62,7 +62,7 @@ func TestLog(t *testing.T) {
 }
 
 func TestStart(t *testing.T) {
-  go pim.StartCommand(process, &database)
+  go pim.StartCommand(process, &database) //nolint:errcheck
   time.Sleep(10 * time.Second)
   lib.Info.Println("pim start works!")
   lib.PIMTERMINATE = true
