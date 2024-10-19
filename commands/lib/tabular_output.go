@@ -1,6 +1,3 @@
-// Not sure what to call this module. It helps with formatting tables in standard output
-// for a number of functions that I use elsewhere. pim log and pim ls use this.
-
 package lib
 
 import (
@@ -67,11 +64,9 @@ func ViewListHeader() string {
   name := ResponsiveWhitespace("Name")
   cronString := ResponsiveWhitespace("Cron string")
   command := ResponsiveWhitespace("Command")
-  duration := ResponsiveWhitespace("Max duration")
   nextRun := ResponsiveWhitespace("Next Run")
-  runStart := ResponsiveWhitespace("Runs on start")
   return strings.Join(
-    []string{name, cronString, command, duration, nextRun, runStart},
+    []string{name, cronString, command, nextRun},
     " | ",
   )
 }

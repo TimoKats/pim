@@ -1,7 +1,3 @@
-// No tedious unit testing. Just run some of the main commands and see if anything breaks.
-// Note, I want to add start here but I don't have a file system in GH actions for the
-// lock files? So that fix is still coming.
-
 package main
 
 import (
@@ -9,6 +5,7 @@ import (
   pim "github.com/TimoKats/pim/commands"
 
   "testing"
+  "time"
 )
 
 var database lib.Database
@@ -16,7 +13,7 @@ var process = lib.Process{
   Runs:[]lib.Run{
     lib.Run{
       Name: "linux-command",
-      Schedule: "@hourly",
+      Schedule: "@start+5",
       Command: "echo hello world",
     },
     lib.Run{
@@ -62,5 +59,12 @@ func TestLog(t *testing.T) {
   if cmdErr != nil {
     t.Errorf("Error in log command: %v", cmdErr)
   }
+}
+
+func TestStart(t *testing.T) {
+  go pim.StartCommand(process, &database) //nolint:errcheck
+  time.Sleep(10 * time.Second)
+  lib.Info.Println("pim start works!")
+  lib.PIMTERMINATE = true
 }
 

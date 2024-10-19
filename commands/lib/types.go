@@ -1,9 +1,3 @@
-// Datatypes used in pim. Relates to yaml files: process.yaml, data.yaml, checkpoint.
-//
-// A semantic explanation of how the datatypes are used:
-// A <process> consists of <run>s. A <run> creates a <log> that we put in the <database>.
-// Checkpoints are created on heartbeats and are not related to the other data types.
-
 package lib
 
 import (

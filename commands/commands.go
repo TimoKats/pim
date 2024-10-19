@@ -1,14 +1,8 @@
-// Contains all the functions that can be invoked from the main package. Currently, that
-// is: stop, list, run, start, and log. Hence, for each command there is a function. They
-// use helper functions from the lib package. Sometimes, (e.g. in start) they also use
-// functions from the setup submodule in this module.
-
 package commands
 
 import (
   lib "github.com/TimoKats/pim/commands/lib"
 
-  "strconv"
   "errors"
   "os"
 )
@@ -35,12 +29,11 @@ func ListCommand(process lib.Process, database *lib.Database) error {
   dummySchedule := lib.CreateDummySchedule(process, database)
   lib.Info.Println(lib.ViewListHeader())
   for _, run := range process.Runs {
-    nextRun, runsCatchup := lib.ViewNextRun(dummySchedule, run)
+    nextRun, _ := lib.ViewNextRun(dummySchedule, run)
     name := lib.ResponsiveWhitespace(run.Name)
     cmd := lib.ResponsiveWhitespace(run.Command)
     schedule := lib.ResponsiveWhitespace(run.Schedule)
-    duration := lib.ResponsiveWhitespace(strconv.Itoa(run.Duration))
-    lib.Info.Printf("%s | %s | %s | %s | %s | %v", name, schedule, cmd, duration, nextRun, runsCatchup)
+    lib.Info.Printf("%s | %s | %s | %s", name, schedule, cmd, nextRun)
   }
   return nil
 }

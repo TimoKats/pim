@@ -1,12 +1,3 @@
-// Submodule that sets up the cron schedule. Uses external library called gocron. The
-// Schedule variable is used as a 'public' variable to add cronjobs to. There are also
-// some functions that are not related to this variable. For example, we allow running on
-// startup (not a cron). These functions are also here. Finally, we also have functions
-// for testing cron rather than executing it. Those functions contain "dummy" in their
-// name.
-//
-// Note, Heartbeat function is there to keep pim running so that it can execute cron.
-
 package lib
 
 import (
@@ -84,6 +75,9 @@ func Heartbeat(process Process, database *Database) {
     TrimDatabase(database, process.MaxLogs)
     if checkpointErr := WriteCheckpoint(Schedule, RunJobMapping); checkpointErr != nil {
       Error.Println(checkpointErr)
+    }
+    if PIMTERMINATE {
+      return
     }
   }
 }
