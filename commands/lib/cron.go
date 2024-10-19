@@ -76,6 +76,9 @@ func Heartbeat(process Process, database *Database) {
     if checkpointErr := WriteCheckpoint(Schedule, RunJobMapping); checkpointErr != nil {
       Error.Println(checkpointErr)
     }
+    if PIMTERMINATE {
+      return
+    }
   }
 }
 

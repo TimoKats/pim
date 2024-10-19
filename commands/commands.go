@@ -3,7 +3,6 @@ package commands
 import (
   lib "github.com/TimoKats/pim/commands/lib"
 
-  "strconv"
   "errors"
   "os"
 )
@@ -30,12 +29,11 @@ func ListCommand(process lib.Process, database *lib.Database) error {
   dummySchedule := lib.CreateDummySchedule(process, database)
   lib.Info.Println(lib.ViewListHeader())
   for _, run := range process.Runs {
-    nextRun, runsCatchup := lib.ViewNextRun(dummySchedule, run)
+    nextRun, _ := lib.ViewNextRun(dummySchedule, run)
     name := lib.ResponsiveWhitespace(run.Name)
     cmd := lib.ResponsiveWhitespace(run.Command)
     schedule := lib.ResponsiveWhitespace(run.Schedule)
-    duration := lib.ResponsiveWhitespace(strconv.Itoa(run.Duration))
-    lib.Info.Printf("%s | %s | %s | %s | %s | %v", name, schedule, cmd, duration, nextRun, runsCatchup)
+    lib.Info.Printf("%s | %s | %s | %s", name, schedule, cmd, nextRun)
   }
   return nil
 }

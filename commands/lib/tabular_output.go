@@ -64,11 +64,9 @@ func ViewListHeader() string {
   name := ResponsiveWhitespace("Name")
   cronString := ResponsiveWhitespace("Cron string")
   command := ResponsiveWhitespace("Command")
-  duration := ResponsiveWhitespace("Max duration")
   nextRun := ResponsiveWhitespace("Next Run")
-  runStart := ResponsiveWhitespace("Runs on start")
   return strings.Join(
-    []string{name, cronString, command, duration, nextRun, runStart},
+    []string{name, cronString, command, nextRun},
     " | ",
   )
 }

@@ -82,8 +82,9 @@ var DATAPATH string = CONFIGDIR + "data.yaml"
 var LOCKPATH string = CONFIGDIR + "lockfile"
 var CHECKPOINTPATH string = CONFIGDIR + "checkpoint"
 var LOGPATH string = LOGDIR + DefaultLogPath()
-var COLUMNWIDTH int = 25
-var COMMANDS []string = []string{"ls", "run", "start", "stop", "clean", "stat"}
+var COLUMNWIDTH int = 27
+var PIMTERMINATE bool = false
+var COMMANDS []string = []string{"ls", "run", "start", "stop", "clean", "status"}
 
 // meta info
 var VERSION string = "v0.0.1"
