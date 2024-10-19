@@ -87,6 +87,6 @@ var PIMTERMINATE bool = false
 var COMMANDS []string = []string{"ls", "run", "start", "stop", "clean", "status"}
 
 // meta info
-var VERSION string = "v0.0.1"
+var VERSION string = "v0.0.4"
 var AUTHOR string = "Timo Kats"
 var LICENSE string = "The GNU General Public License v3.0"
