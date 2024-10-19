@@ -1,8 +1,3 @@
-// This submodule contains all constant variables used in pim. Some are based on the home
-// directory of the user. Hence, there are also some functions to derive that (no xgd).
-// The const variables are: paths, helpstrings, and configuration settings. Note, use all
-// caps format when defining consts.
-
 package lib
 
 import (

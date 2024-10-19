@@ -1,9 +1,3 @@
-// Commands that run every startup automatically. In short, the data file and yaml files
-// are loaded (or created; if they don't exist yet) and parsed into objects through the
-// SetupYamlFiles function. Next, certain attributes are cleaned and checked by helper
-// functions. Finally, the CheckStartupErrors is called every startup to check if all
-// const values that are needed can be set.
-
 package commands
 
 import (

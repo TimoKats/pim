@@ -1,6 +1,3 @@
-// Functions needed to store items in the database. Database itself is loaded/written in
-// the io module.
-
 package lib
 
 import (

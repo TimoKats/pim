@@ -1,8 +1,3 @@
-// Flags can be called from main package using a - or -- prefix. Currently, the Flags
-// only output constant information (like license, version, etc) to standard output. The
-// only reason they are in their own submodule is because it keeps other modules cleaner
-// :)
-
 package commands
 
 import (

@@ -1,6 +1,3 @@
-// Not sure what to call this module. It helps with formatting tables in standard output
-// for a number of functions that I use elsewhere. pim log and pim ls use this.
-
 package lib
 
 import (

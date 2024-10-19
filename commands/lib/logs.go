@@ -1,7 +1,3 @@
-// Sets up logging format for pim. Note, if pim start is used, then switch to file logging.
-// This prevents the user being interrupted by writing to standard output when running in
-// the background.
-
 package lib
 
 import (

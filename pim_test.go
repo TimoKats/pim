@@ -1,7 +1,3 @@
-// No tedious unit testing. Just run some of the main commands and see if anything breaks.
-// Note, I want to add start here but I don't have a file system in GH actions for the
-// lock files? So that fix is still coming.
-
 package main
 
 import (
