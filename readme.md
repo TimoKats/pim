@@ -89,6 +89,6 @@ If you want to run `pim start` automatically you have a couple of options. First
 - Q: What advantages does pim have over anacron?
     - A: Anacron can only run once a day (or less often)
 - Q: What advantages does pim have over crontab?
-    - A: Crontab can't do catchup runs if the computer was turned off, and only accepts cron strings (no @time operator).
+    - A: Crontab can't do catchup runs if the computer was turned off, and only accepts cron strings.
  - Q: What advantages does pim have over SystemD?
     - A: If you already have systemD and are happy with it, maybe not so much. However, pim is cross platform and minimally invasive, so you can copy your process.yaml to any other OS and it should work. SystemD runs all your programs and therefore is less flexible.
