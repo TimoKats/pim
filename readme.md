@@ -79,7 +79,7 @@ If you want to run `pim start` automatically you have a couple of options. First
 
 > For Windows users: Perhaps you can run pim as a service, but there's no way for me to test that given I don't have a Windows machine.
 
-# FAQ
+## FAQ
 - Q: I have some scheduling requirements that pim doesn't support.
     - A: I would love to know! If you write code, feel free to make a PR. Else, open something on the discussion board.
 - Q: Can I install pim without go?
