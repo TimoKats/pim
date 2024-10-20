@@ -1,23 +1,23 @@
 ![logo](https://github.com/TimoKats/pim/blob/main/.github/logo.png)
 
+## Abstract
 ![example workflow](https://github.com/timokats/pim/actions/workflows/test.yaml/badge.svg)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-red.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![GitHub tag](https://img.shields.io/github/tag/TimoKats/pim?include_prereleases=&sort=semver&color=cyan)](https://github.com/TimoKats/pim/releases/)
 [![stars - pim](https://img.shields.io/github/stars/TimoKats/pim?style=social)](https://github.com/TimoKats/pim)
 [![forks - pim](https://img.shields.io/github/forks/TimoKats/pim?style=social)](https://github.com/TimoKats/pim) 
 
-Pim (which stands for Process IMprover) is a task orchestrator meant for personal computers. Besides regular cron scheduling, it adds additional features like:
-- Running on start (with optional delay).
-- Running commands in specific directories.
-- Running commands directly based on their set name (aliases).
-- Doing catchup runs (if computer was turned off during scheduled run).
-- Scheduling multiple commands at the same time.
-- Access to logs.
+Pim (which stands for Process IMprover) is a minimally invasive task orchestrator that runs on Windows and Linux. Besides regular cron scheduling, it adds additional features like:
 
-Moreover, the goal of pim is to be an orchestrator that takes all scenarios into account, so ideas are always welcome.
+- Run commands on startup (with optional delay).
+- Run commands in specific directories.
+- Run commands directly based on their set name (aliases).
+- Doing catchup runs (if computer was turned off during scheduled run).
+- Access to run logs.
+- Etc...Ideas welcome!
 
 ## Getting started
-You can install pim with `go install github.com/TimoKats/pim@latest` (assuming you have go installed and GOPATH set correctly). Currently, pim is not available in any package repositories. Next, you can setup your schedule in `~/.pim/process.yaml`.
+You can install pim with `go install github.com/TimoKats/pim@latest` (assuming you have go installed and GOPATH set correctly). Currently, pim is not available in any package repositories. Next, you can setup your schedule. On linux systems, this will be in `~/.pim/process.yaml`. On windows, you can do the same in `C:\Users\<username>\.pim\process.yaml`
 
 ## Usage
 
@@ -33,7 +33,7 @@ process:
     schedule: '@times;8:00;10:00;16:00;18:00;21:55' # schedules prefixed with @times will run every day at the selected time.
     directory: /home/user/code/ # optional: set a directory to run the code in.
     catchup: true # optional. if true, pim will do a catchup run on startup if the computer was off when last scheduled.
-    command: git fetch # the actual command you want to run.
+    command: git fetch
 
   - run:
     name: scraper
@@ -45,6 +45,12 @@ process:
     name: change-wallpaper
     schedule: '*/5 * * * *' # You can also have some good-ol cron strings :)
     command: ./change-wallpaper.sh
+
+  - run:
+    name: python-program # Without cron schedule, you can run this on command
+    directory: /home/user/code/python/
+    command: python3 main.py -d some_parameter
+
 ```
 
 ### Commands
@@ -56,6 +62,7 @@ Commands:
 - stop: Stops the cron schedule started by running: pim start.
 - ls: Lists all the commands and their characteristics defined in your process YAML.
 - log <\<optional:run-id\>>: Show all logs, or a log of a specific run.
+- status: Show if pim is currently running and its pid.
 - clean: Clean log files.
 
 Flags:
@@ -72,4 +79,16 @@ If you want to run `pim start` automatically you have a couple of options. First
 
 > For Windows users: Perhaps you can run pim as a service, but there's no way for me to test that given I don't have a Windows machine.
 
-
+# FAQ
+- Q: I have some scheduling requirements that pim doesn't support.
+    - A: I would love to know! If you write code, feel free to make a PR. Else, open something on the discussion board.
+- Q: Can I install pim without go?
+    - A: Currently not. If pim actually becomes popular I will work on putting it in package managers.
+- Q: What does "minimally invasive task orchestration" mean?
+    - A: Programs like systemD control all your processes. Pim can be started/stopped on command and only impacts the processes you add to process.yaml.
+- Q: What advantages does pim have over anacron?
+    - A: Anacron can only run once a day (or less often)
+- Q: What advantages does pim have over crontab?
+    - A: Crontab can't do catchup runs if the computer was turned off, and only accepts cron strings (no @time operator).
+ - Q: What advantages does pim have over SystemD?
+    - A: If you already have systemD and are happy with it, maybe not so much. However, pim is cross platform and minimally invasive, so you can copy your process.yaml to any other OS and it should work. SystemD runs all your programs and therefore is less flexible.
