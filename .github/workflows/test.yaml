@@ -10,9 +10,10 @@ jobs:
 
   version-update:
     name: Test if version is updated
-    uses: TimoKats/version-check/action.yml@main
-    with:
-      filename: 'commands/lib/const.go'
+    steps:
+      uses: TimoKats/version-check/action.yml@main
+      with:
+        filename: 'commands/lib/const.go'
 
   testing:
     name: unit tests
