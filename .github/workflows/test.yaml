@@ -10,7 +10,7 @@ jobs:
 
   version-update:
     name: Test if version is updated
-    uses: TimoKats/version-check@main
+    uses: TimoKats/version-check/action.yml@main
     with:
       filename: 'commands/lib/const.go'
 
@@ -28,7 +28,6 @@ jobs:
 
   linter:
     name: linter check
-    needs: testing
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
