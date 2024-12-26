@@ -10,7 +10,6 @@ jobs:
 
   version-update:
     name: Test if version is updated
-    runs-on: ubuntu-latest
     uses: TimoKats/version-check@main
     with:
       filename: 'commands/lib/const.go'
