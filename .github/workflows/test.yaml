@@ -10,6 +10,7 @@ jobs:
 
   version-update:
     name: Test if version is updated
+    runs-on: ubuntu-latest
     steps:
       - name: Test
         uses: TimoKats/version-check@main
