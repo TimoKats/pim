@@ -15,7 +15,7 @@ jobs:
       - name: Test
         uses: TimoKats/version-check@main
         with:
-          filename: 'commands/lib/const.go'
+          filename: 'commands/lib/consts.go'
 
   testing:
     name: unit tests
